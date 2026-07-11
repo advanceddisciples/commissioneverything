@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" type="image/png" href="favicon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Privacy Policy — Dylan Jo</title>
 <meta name="description" content="Privacy policy — how Dylan Jo handles your data and photos submitted for custom commissions.">
@@ -88,7 +89,8 @@
     box-shadow:0 12px 32px rgba(34,31,27,0.10);
     transition:box-shadow 0.4s ease,background 0.4s ease;
   }
-  @media (max-width:520px){ header.site{top:8px;margin:8px auto 0;border-radius:20px;} }
+  @media (max-width:768px){ header.site{margin:14px 16px 0;} }
+  @media (max-width:520px){ header.site{top:8px;margin:8px 14px 0;border-radius:20px;} }
   .shop-dot{
     position:relative;width:6px;height:6px;border-radius:50%;background:var(--accent);
     display:inline-block;margin-left:5px;
@@ -158,6 +160,17 @@
   }
 
   .header-actions{display:flex;align-items:center;gap:10px;margin-left:18px;}
+  .header-social{display:flex;align-items:center;gap:8px;}
+  .header-social a{
+    width:30px;height:30px;border-radius:50%;border:1px solid var(--rule);flex:0 0 auto;
+    display:flex;align-items:center;justify-content:center;color:var(--ink-soft);
+    transition:border-color 0.25s,color 0.25s,transform 0.25s;
+  }
+  .header-social a:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px);}
+  .header-social svg{width:15px;height:15px;}
+  .header-social .patreon-glyph{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:0.95rem;line-height:1;}
+  @media (max-width:480px){ .header-social a{width:26px;height:26px;} .header-social svg{width:13px;height:13px;} }
+  @media (max-width:860px){ .header-social{order:3;} }
   .cart-btn{
     position:relative;width:40px;height:40px;border-radius:50%;flex:0 0 auto;
     display:flex;align-items:center;justify-content:center;
@@ -207,7 +220,7 @@
     .nav-toggle{display:block;}
     nav.main{
       display:block;position:absolute;top:100%;left:0;right:0;background:var(--paper);
-      border-bottom:1px solid var(--rule);box-shadow:0 16px 28px rgba(34,31,27,0.1);
+      box-shadow:0 16px 28px rgba(34,31,27,0.1);
       overflow-x:hidden;overflow-y:auto;-webkit-overflow-scrolling:touch;max-height:0;transition:max-height 0.3s ease;
     }
     nav.main.is-open{max-height:min(70vh,520px);}
@@ -408,6 +421,7 @@
     font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;padding:10px 4px;
   }
   .foot-social{display:flex;gap:16px;margin-top:24px;}
+  .foot-social svg{width:16px;height:16px;}
   .foot-social a{
     width:34px;height:34px;border:1px solid var(--footer-rule);border-radius:50%;
     display:flex;align-items:center;justify-content:center;color:var(--footer-text);
@@ -479,6 +493,14 @@
       </ul>
     </nav>
     <div class="header-actions">
+      <div class="header-social">
+        <a href="https://www.instagram.com/commissioneverything?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        </a>
+        <a href="https://patreon.com/commissioneverything" target="_blank" rel="noopener" aria-label="Patreon">
+          <span class="patreon-glyph">P</span>
+        </a>
+      </div>
       <a class="cart-btn" href="cart.html" aria-label="View cart">
       <span class="cart-pulse"></span>
       <span class="cart-count" id="cart-count">0</span>
@@ -625,6 +647,14 @@
     <div class="foot-grid">
       <div class="foot-col">
         <div class="foot-logo"><strong>Dylan Jo</strong> <span style="font-weight:400;">— Seattle, WA</span></div>
+        <div class="foot-social">
+          <a href="https://www.instagram.com/commissioneverything?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          </a>
+          <a href="https://patreon.com/commissioneverything" target="_blank" rel="noopener" aria-label="Patreon">
+            <span style="font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1rem;">P</span>
+          </a>
+        </div>
               </div>
       <div class="foot-col">
         <h4>Useful Links</h4>

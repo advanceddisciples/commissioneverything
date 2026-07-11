@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /cart.html
 
-Sitemap: https://www.dylanjo.art/sitemap.xml
+Sitemap: https://www.commissioneverything.com/sitemap.xml
