@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Your Cart — Dylan Jo</title>
+<meta name="description" content="Review your cart of custom pet portraits, prints, and engravings before checkout.">
+<meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Caveat:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -163,6 +165,15 @@
     background:var(--paper);border:1px solid var(--accent);color:var(--accent);text-decoration:none;
     transition:background 0.25s,color 0.25s;
   }
+  .home-btn{
+    display:none;width:40px;height:40px;border-radius:50%;flex:0 0 auto;
+    align-items:center;justify-content:center;
+    background:var(--paper);border:1px solid var(--rule);color:var(--ink);text-decoration:none;
+    transition:background 0.25s,color 0.25s,border-color 0.25s;
+  }
+  .home-btn:hover{border-color:var(--accent);color:var(--accent);}
+  .home-btn svg{width:17px;height:17px;}
+  @media (max-width:860px){ .home-btn{display:flex;} }
   .cart-btn:hover{background:var(--accent);color:#fff;}
   .cart-pulse{
     position:absolute;inset:0;border-radius:50%;
@@ -207,9 +218,9 @@
     nav.main{
       display:block;position:absolute;top:100%;left:0;right:0;background:var(--paper);
       border-bottom:1px solid var(--rule);box-shadow:0 16px 28px rgba(34,31,27,0.1);
-      max-height:0;overflow:hidden;transition:max-height 0.3s ease;
+      overflow-x:hidden;overflow-y:auto;-webkit-overflow-scrolling:touch;max-height:0;transition:max-height 0.3s ease;
     }
-    nav.main.is-open{max-height:320px;}
+    nav.main.is-open{max-height:min(70vh,520px);}
     nav.main ul{flex-direction:column;align-items:stretch;gap:0;padding:6px 28px 18px;}
     nav.main li{display:block;border-bottom:1px solid var(--rule);}
     nav.main li:last-child{border-bottom:none;}
@@ -522,6 +533,9 @@
       </ul>
     </nav>
     <div class="header-actions">
+      <a class="home-btn" href="index.html" aria-label="Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V10"/></svg>
+      </a>
       <a class="cart-btn" href="cart.html" aria-label="View cart">
       <span class="cart-pulse"></span>
       <span class="cart-count" id="cart-count">0</span>
@@ -568,8 +582,7 @@
     <div class="foot-grid">
       <div class="foot-col">
         <div class="foot-logo"><strong>Dylan Jo</strong> <span style="font-weight:400;">— Seattle, WA</span></div>
-        <p>Custom pet, wedding, and architectural portraits — drawn by hand from your own photos in Seattle, WA.</p>
-      </div>
+              </div>
       <div class="foot-col">
         <h4>Useful Links</h4>
         <ul>

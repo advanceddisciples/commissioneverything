@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Return &amp; Refund Policy — Dylan Jo</title>
+<meta name="description" content="Return and refund policy for custom commissioned artwork from Dylan Jo.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Caveat:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -207,9 +208,9 @@
     nav.main{
       display:block;position:absolute;top:100%;left:0;right:0;background:var(--paper);
       border-bottom:1px solid var(--rule);box-shadow:0 16px 28px rgba(34,31,27,0.1);
-      max-height:0;overflow:hidden;transition:max-height 0.3s ease;
+      overflow-x:hidden;overflow-y:auto;-webkit-overflow-scrolling:touch;max-height:0;transition:max-height 0.3s ease;
     }
-    nav.main.is-open{max-height:320px;}
+    nav.main.is-open{max-height:min(70vh,520px);}
     nav.main ul{flex-direction:column;align-items:stretch;gap:0;padding:6px 28px 18px;}
     nav.main li{display:block;border-bottom:1px solid var(--rule);}
     nav.main li:last-child{border-bottom:none;}
@@ -514,7 +515,7 @@
   <p>The following items are not eligible for return or refund unless they arrive damaged or defective:</p>
   <ul>
     <li>Personalized or custom-made products.</li>
-    <li>Digital products or downloadable content.</li>
+    <li><u>Digital</u> products or downloadable content.</li>
     <li>Gift cards.</li>
     <li>Clearance or final sale items.</li>
     <li>Products marked as non-returnable.</li>
@@ -529,7 +530,7 @@
     <li><strong>Reference photos.</strong> By submitting a photo for your commission, you confirm that you own the photo or have permission to use it. We are not responsible for verifying ownership of submitted images.</li>
     <li><strong>Revisions.</strong> Each commission includes a limited number of revision rounds (details provided at the time of ordering). Additional revisions beyond that may incur an extra charge.</li>
     <li><strong>Right to decline or cancel.</strong> We reserve the right to decline or cancel a commission at any stage — for example, due to unclear references, inappropriate subject matter, or unforeseen circumstances — in which case any unearned portion of your payment will be refunded.</li>
-    <li><strong>Ownership and usage rights.</strong> Purchasing a commission entitles you to the physical (or digital, where applicable) piece itself. We retain the right to photograph, reproduce, and share the artwork for portfolio and marketing purposes unless otherwise agreed in writing. Commercial reproduction rights are not included unless separately negotiated.</li>
+    <li><strong>Ownership and usage rights.</strong> Purchasing a commission entitles you to the physical (or <u>digital</u>, where applicable) piece itself. We retain the right to photograph, reproduce, and share the artwork for portfolio and marketing purposes unless otherwise agreed in writing. Commercial reproduction rights are not included unless separately negotiated.</li>
     <li><strong>Timelines.</strong> Turnaround times are estimates, not guarantees, and may be affected by commission volume, complexity, or delays in receiving reference materials or approvals from the client.</li>
   </ul>
 
@@ -585,8 +586,7 @@
     <div class="foot-grid">
       <div class="foot-col">
         <div class="foot-logo"><strong>Dylan Jo</strong> <span style="font-weight:400;">— Seattle, WA</span></div>
-        <p>Custom pet, wedding, and architectural portraits — drawn by hand from your own photos in Seattle, WA.</p>
-      </div>
+              </div>
       <div class="foot-col">
         <h4>Useful Links</h4>
         <ul>
