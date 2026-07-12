@@ -93,13 +93,14 @@
   @media (max-width:520px){ header.site{top:8px;margin:8px 14px 0;border-radius:20px;} }
   .shop-dot{
     position:relative;width:6px;height:6px;border-radius:50%;background:var(--accent);
-    display:inline-block;margin-left:5px;
+    display:inline-block;margin-left:2px;
   }
   .shop-dot::after{
     content:'';position:absolute;inset:-5px;border-radius:50%;background:var(--accent);
     opacity:0.4;animation:cartPulse 2.6s ease-in-out infinite;
   }
   @media (prefers-reduced-motion: reduce){ .shop-dot::after{animation:none;display:none;} }
+  @media (max-width:860px){ .shop-dot{margin-left:1px;vertical-align:middle;} .shop-dot::after{inset:-3px;} }
   header.site.is-scrolled{box-shadow:0 6px 24px rgba(34,31,27,0.06);}
   .site-inner{
     max-width:1160px;margin:0 auto;padding:20px 28px;
@@ -119,7 +120,8 @@
   }
   nav.main a:hover, nav.main a[aria-current="page"]{color:var(--ink);border-color:var(--accent);}
 
-  .has-dropdown{position:relative;}
+  .has-dropdown{position:relative;padding-bottom:14px;margin-bottom:-14px;}
+  .nav-drop-label{display:inline-flex;align-items:center;}
   .nav-drop-toggle{
     display:flex;align-items:center;gap:5px;background:none;border:none;cursor:pointer;padding:0 0 3px;
     font-family:'Poppins',sans-serif;font-size:0.86rem;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;
@@ -145,7 +147,9 @@
   }
   .nav-dropdown a:hover{background:var(--paper-warm);color:var(--ink);}
   @media (max-width:860px){
+    .has-dropdown{padding-bottom:0;margin-bottom:0;}
     .nav-drop-toggle{width:100%;justify-content:space-between;padding:14px 0;}
+    .nav-drop-label{gap:0;}
     .nav-dropdown{
       position:static;display:none;box-shadow:none;border:none;background:none;
       margin:0 0 6px;padding:0 0 0 14px;opacity:1;visibility:visible;transform:none;min-width:0;
@@ -480,7 +484,7 @@
         <li><a href="index.html">Home</a></li>
         <li><a href="gallery.html">Past Works</a></li>
         <li class="has-dropdown">
-          <button class="nav-drop-toggle nav-current" type="button" aria-expanded="false">Shop<span class="shop-dot"></span>
+          <button class="nav-drop-toggle nav-current" type="button" aria-expanded="false"><span class="nav-drop-label">Shop<span class="shop-dot"></span></span>
             <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
           </button>
           <ul class="nav-dropdown">
@@ -499,6 +503,9 @@
         </a>
         <a href="https://patreon.com/commissioneverything" target="_blank" rel="noopener" aria-label="Patreon">
           <span class="patreon-glyph">P</span>
+        </a>
+        <a href="https://www.tiktok.com/@commissioneverything?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3c.4 2.2 1.8 3.7 4.1 3.9v2.9c-1.4.1-2.7-.3-4.1-1.1v6.8c0 3.4-2.5 6-6 6-3.4 0-6-2.6-6-6s2.6-6 6-6c.4 0 .8 0 1.1.1v3c-.4-.1-.7-.2-1.1-.2-1.7 0-3 1.3-3 3s1.3 3 3 3 3-1.3 3-3V3h2.9z"/></svg>
         </a>
       </div>
       <a class="cart-btn" href="cart.html" aria-label="View cart">
@@ -653,6 +660,9 @@
           </a>
           <a href="https://patreon.com/commissioneverything" target="_blank" rel="noopener" aria-label="Patreon">
             <span style="font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1rem;">P</span>
+          </a>
+          <a href="https://www.tiktok.com/@commissioneverything?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3c.4 2.2 1.8 3.7 4.1 3.9v2.9c-1.4.1-2.7-.3-4.1-1.1v6.8c0 3.4-2.5 6-6 6-3.4 0-6-2.6-6-6s2.6-6 6-6c.4 0 .8 0 1.1.1v3c-.4-.1-.7-.2-1.1-.2-1.7 0-3 1.3-3 3s1.3 3 3 3 3-1.3 3-3V3h2.9z"/></svg>
           </a>
         </div>
               </div>
