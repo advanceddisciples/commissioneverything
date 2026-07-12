@@ -5,6 +5,45 @@
 
 const CART_KEY = 'dylanjo_cart_v1';
 
+// ---- Supabase / Stripe backend config ----
+// Public project URL + anon key — safe to expose in client-side code.
+// Storage upload policy only allows INSERT (no read/list), and the
+// checkout edge function re-validates every price server-side.
+const SUPABASE_URL = 'https://veossvhvxgmstmiijmkw.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZlb3Nzdmh2eGdtc3RtaWlqbWt3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3MzUyOTcsImV4cCI6MjA5OTMxMTI5N30.0Babo_KeQ7J4OMZLydm7jqaWjsOdrSTcOt_E7h4kXi0';
+const FUNCTIONS_URL = SUPABASE_URL + '/functions/v1';
+
+/**
+ * Uploads a reference photo (e.g. a pet photo) straight to Supabase Storage
+ * so it's never lost. Returns the storage path to save on the cart item, or
+ * null if there was no file or the upload failed (failure never blocks
+ * adding the item to the cart — we don't want a flaky upload to lose a sale).
+ */
+async function cartUploadPhoto(file) {
+  if (!file) return null;
+  try {
+    const ext = (file.name.split('.').pop() || 'jpg').toLowerCase().replace(/[^a-z0-9]/g, '') || 'jpg';
+    const path = `uploads/${Date.now()}-${Math.random().toString(36).slice(2, 10)}.${ext}`;
+    const res = await fetch(`${SUPABASE_URL}/storage/v1/object/reference-photos/${path}`, {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+        'Content-Type': file.type || 'application/octet-stream'
+      },
+      body: file
+    });
+    if (!res.ok) {
+      console.error('Photo upload failed:', await res.text());
+      return null;
+    }
+    return path;
+  } catch (e) {
+    console.error('Photo upload error:', e);
+    return null;
+  }
+}
+
 function cartGetItems() {
   try {
     const raw = localStorage.getItem(CART_KEY);
@@ -86,11 +125,12 @@ function cartBuildCheckoutPayload() {
   const items = cartGetItems();
   return {
     items: items.map(i => ({
-      id: i.id,
       name: i.name,
       variant: i.variant || null,
-      unit_price_usd: i.price,
-      quantity: i.qty
+      price: i.price,
+      qty: i.qty,
+      customization: i.customization || null,
+      photo_path: i.photo_path || null
     })),
     subtotal_usd: cartGetSubtotal(),
     currency: 'usd',
@@ -99,16 +139,31 @@ function cartBuildCheckoutPayload() {
 }
 
 /**
- * Placeholder for the future Stripe integration.
- * TODO: POST cartBuildCheckoutPayload() to a backend endpoint
- * (e.g. /api/create-checkout-session), which creates a Stripe
- * Checkout Session server-side and returns a redirect URL.
- * For now this just logs the payload so the shape can be verified.
+ * Sends the cart to the create-checkout-session edge function, which
+ * validates pricing, records the order, creates a Stripe Checkout Session,
+ * and returns a URL to redirect the customer to.
+ * Throws on failure so callers can show an error instead of redirecting.
  */
-function cartSubmitToCheckout() {
+async function cartCheckout(customerEmail) {
   const payload = cartBuildCheckoutPayload();
-  console.log('Checkout payload (ready for backend):', payload);
-  return payload;
+  payload.customer_email = customerEmail || null;
+  payload.origin = window.location.origin;
+
+  const res = await fetch(`${FUNCTIONS_URL}/create-checkout-session`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'apikey': SUPABASE_ANON_KEY,
+      'Authorization': 'Bearer ' + SUPABASE_ANON_KEY
+    },
+    body: JSON.stringify(payload)
+  });
+
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok || !data.url) {
+    throw new Error(data.error || 'Checkout could not be started. Please try again.');
+  }
+  window.location.href = data.url;
 }
 
 document.addEventListener('DOMContentLoaded', cartUpdateBadge);

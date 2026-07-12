@@ -849,10 +849,33 @@
   }
 
   if (checkoutBtn) {
-    checkoutBtn.addEventListener('click', () => {
-      const payload = cartSubmitToCheckout();
-      alert('Checkout isn\'t connected to payment yet — but your order is ready to go! (' + payload.items.length + ' item(s), subtotal ' + cartFormatPrice(payload.subtotal_usd) + ')');
+    checkoutBtn.addEventListener('click', async () => {
+      checkoutBtn.disabled = true;
+      const originalText = checkoutBtn.textContent;
+      checkoutBtn.textContent = 'Redirecting to secure checkout…';
+      try {
+        await cartCheckout();
+        // On success the browser is redirected to Stripe by cartCheckout(),
+        // so execution won't normally continue past this line.
+      } catch (err) {
+        console.error('Checkout error:', err);
+        alert(err.message || 'Something went wrong starting checkout. Please try again, or contact us if it keeps happening.');
+        checkoutBtn.disabled = false;
+        checkoutBtn.textContent = originalText;
+      }
     });
+  }
+
+  // If Stripe redirected back here after a canceled checkout, let the
+  // customer know their cart is still saved.
+  if (new URLSearchParams(window.location.search).get('checkout') === 'canceled') {
+    const note = document.createElement('p');
+    note.className = 'cart-note';
+    note.style.color = '#b3392c';
+    note.textContent = 'Checkout was canceled — your cart is still here whenever you\'re ready.';
+    if (checkoutBtn && checkoutBtn.parentNode) {
+      checkoutBtn.parentNode.insertBefore(note, checkoutBtn.nextSibling);
+    }
   }
 
   renderCart();

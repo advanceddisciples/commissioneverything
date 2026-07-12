@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="favicon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Confirmed — Dylan Jo</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Caveat:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --paper-warm:#F8F5EF;
+    --ink:#221F1B;
+    --ink-soft:#75705F;
+    --rule:#E7E1D3;
+    --accent:#A65A45;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;background:var(--paper-warm);color:var(--ink);
+    font-family:'Poppins',sans-serif;font-size:16.5px;line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;display:flex;align-items:center;justify-content:center;
+  }
+  .card{
+    max-width:520px;width:calc(100% - 48px);margin:24px;background:var(--paper);
+    border:1px solid var(--rule);border-radius:18px;padding:48px 36px;text-align:center;
+    box-shadow:0 20px 50px rgba(34,31,27,0.08);
+  }
+  .check{
+    width:64px;height:64px;border-radius:50%;background:var(--accent);color:#fff;
+    display:flex;align-items:center;justify-content:center;margin:0 auto 22px;
+  }
+  h1{font-family:'Caveat',cursive;font-weight:700;font-size:2.4rem;margin:0 0 10px;color:var(--ink);}
+  p{color:var(--ink-soft);margin:0 0 8px;}
+  .order-id{
+    font-family:'Poppins',sans-serif;font-size:0.78rem;letter-spacing:0.05em;text-transform:uppercase;
+    color:var(--ink-soft);background:var(--paper-warm);border:1px solid var(--rule);
+    border-radius:10px;padding:10px 14px;margin:20px 0;word-break:break-all;
+  }
+  .btn{
+    display:inline-block;margin-top:18px;padding:14px 26px;border:1px solid var(--ink);border-radius:999px;
+    font-family:'Poppins',sans-serif;font-size:0.85rem;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;
+    text-decoration:none;color:var(--ink);transition:background 0.25s,color 0.25s;
+  }
+  .btn:hover{background:var(--ink);color:#fff;}
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="check">
+      <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+    </div>
+    <h1>Thank you — your order is in!</h1>
+    <p>A confirmation email is on its way to you. I'll get started on your custom piece and reach out if I have any questions.</p>
+    <div class="order-id" id="session-id"></div>
+    <a class="btn" href="index.html">Back to the shop</a>
+  </div>
+
+  <script>
+    // The order itself was already recorded server-side when checkout
+    // started; this page just clears the local cart and shows a reference id.
+    try {
+      localStorage.removeItem('dylanjo_cart_v1');
+    } catch (e) {}
+
+    const params = new URLSearchParams(window.location.search);
+    const sessionId = params.get('session_id');
+    const idEl = document.getElementById('session-id');
+    if (sessionId) {
+      idEl.textContent = 'Order reference: ' + sessionId;
+    } else {
+      idEl.remove();
+    }
+  </script>
+</body>
+</html>

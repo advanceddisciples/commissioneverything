@@ -1053,23 +1053,41 @@
   const mugOrderSuccess = document.getElementById('mug-order-success');
   if (mugOrderForm) {
     const mugSubmitBtn = mugOrderForm.querySelector('button[type="submit"]');
-    mugOrderForm.addEventListener('submit', (e) => {
+    mugOrderForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       if (mugSubmitBtn) { mugSubmitBtn.disabled = true; mugSubmitBtn.textContent = 'Adding…'; }
 
-      // Add to cart immediately — this must not depend on the network.
       const activeSize = mugOrderForm.querySelector('#size-pills .option-pill[data-active="true"]');
       const activeName = mugOrderForm.querySelector('#name-pills .option-pill[data-active="true"]');
       const qtyValue = parseInt(mugOrderForm.querySelector('.qty-input').value, 10) || 1;
       const sizeLabel = activeSize ? activeSize.getAttribute('data-label') : '11 oz';
-      const unitPrice = activeSize ? parseFloat(activeSize.getAttribute('data-size')) : 30.99;
+      const baseSizePrice = activeSize ? parseFloat(activeSize.getAttribute('data-size')) : 30.99;
+      const petNameValue = mugOrderForm.querySelector('input[name="Pet Name"]').value || null;
+      const rushOrder = mugOrderForm.querySelector('input[name="Rush Order (+$8)"]').checked;
+      const digitalDownload = mugOrderForm.querySelector('input[name="Digital Download (+$6)"]').checked;
+      const extrasTotal = (rushOrder ? 8 : 0) + (digitalDownload ? 6 : 0);
+      const unitPrice = baseSizePrice + extrasTotal;
+      const extrasLabel = [rushOrder ? 'Rush Order' : null, digitalDownload ? 'Digital Download' : null].filter(Boolean).join(' + ');
+
+      // Upload the reference photo before adding to cart, so it's never lost.
+      const photoFile = mugPhotoInput && mugPhotoInput.files ? mugPhotoInput.files[0] : null;
+      const photoPath = await cartUploadPhoto(photoFile);
+
       cartAddItem({
-        id: 'mug-' + sizeLabel.replace(/\s+/g, '') + '-' + (activeName ? activeName.getAttribute('data-name') : 'include'),
+        id: 'mug-' + sizeLabel.replace(/\s+/g, '') + '-' + (activeName ? activeName.getAttribute('data-name') : 'include') + (extrasTotal ? '-' + extrasTotal : ''),
         name: 'Custom Pet Portrait Mug',
-        variant: sizeLabel + ' · ' + (activeName ? activeName.textContent.trim() : 'Include Name'),
+        variant: sizeLabel + ' · ' + (activeName ? activeName.textContent.trim() : 'Include Name') + (extrasLabel ? ' · ' + extrasLabel : ''),
         price: unitPrice,
         qty: qtyValue,
-        image: mainImg ? mainImg.src : undefined
+        image: mainImg ? mainImg.src : undefined,
+        photo_path: photoPath,
+        customization: {
+          pet_name: petNameValue,
+          name_on_mug: activeName ? activeName.textContent.trim() : 'Include Name',
+          size: sizeLabel,
+          rush_order: rushOrder,
+          digital_download: digitalDownload
+        }
       });
       if (mugOrderSuccess) {
         mugOrderSuccess.setAttribute('data-show', 'true');
@@ -1159,7 +1177,7 @@
   const caseOrderSuccess = document.getElementById('case-order-success');
   if (caseOrderForm) {
     const caseSubmitBtn = caseOrderForm.querySelector('button[type="submit"]');
-    caseOrderForm.addEventListener('submit', (e) => {
+    caseOrderForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       if (caseSubmitBtn) { caseSubmitBtn.disabled = true; caseSubmitBtn.textContent = 'Adding…'; }
 
@@ -1167,13 +1185,17 @@
       const makeLabel = activeMake ? activeMake.textContent.trim() : 'iPhone';
       const modelLabel = modelSelect ? modelSelect.value : '';
       const qtyValue = parseInt(caseOrderForm.querySelector('.qty-input').value, 10) || 1;
+      const photoFile = casePhotoInput && casePhotoInput.files ? casePhotoInput.files[0] : null;
+      const photoPath = await cartUploadPhoto(photoFile);
       cartAddItem({
         id: 'phonecase-' + makeLabel.toLowerCase() + '-' + modelLabel.replace(/\s+/g, '').toLowerCase(),
         name: 'Custom Pet Portrait Phone Case',
         variant: makeLabel + ' · ' + modelLabel,
         price: 55.00,
         qty: qtyValue,
-        image: caseMainImg ? caseMainImg.src : undefined
+        image: caseMainImg ? caseMainImg.src : undefined,
+        photo_path: photoPath,
+        customization: { make: makeLabel, model: modelLabel }
       });
       if (caseOrderSuccess) {
         caseOrderSuccess.setAttribute('data-show', 'true');

@@ -999,11 +999,10 @@
     const orderSuccess = document.getElementById('success-' + id);
     if (orderForm) {
       const submitBtn = orderForm.querySelector('button[type="submit"]');
-      orderForm.addEventListener('submit', (e) => {
+      orderForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Adding…'; }
 
-        // Add to cart immediately — this must not depend on the network.
         const activeName = orderForm.querySelector('#name-pills-' + id + ' .option-pill[data-active="true"]');
         const activeColor = orderForm.querySelector('#color-pills-' + id + ' .color-swatch[data-active="true"]');
         const activePendant = orderForm.querySelector('#pendant-pills-' + id + ' .option-pill[data-active="true"]');
@@ -1015,13 +1014,23 @@
           activeColor ? activeColor.getAttribute('data-color') : 'Gold'
         ];
         if (activePendant) variantParts.push(activePendant.getAttribute('data-label') + ' Pendant');
+
+        const photoFile = photoInput && photoInput.files ? photoInput.files[0] : null;
+        const photoPath = await cartUploadPhoto(photoFile);
+
         cartAddItem({
           id: 'engraving-' + id + '-' + (activeName ? activeName.getAttribute('data-name') : 'include') + '-' + (activeColor ? activeColor.getAttribute('data-color') : 'gold') + '-' + pendantAdd,
           name: productName,
           variant: variantParts.join(' • '),
           price: 40.00 + pendantAdd,
           qty: qtyValue,
-          image: mainImg ? mainImg.src : undefined
+          image: mainImg ? mainImg.src : undefined,
+          photo_path: photoPath,
+          customization: {
+            name_included: activeName ? activeName.textContent.trim() : 'Include Name',
+            color: activeColor ? activeColor.getAttribute('data-color') : 'Gold',
+            pendant_count: activePendant ? activePendant.getAttribute('data-label') : 'One'
+          }
         });
         if (orderSuccess) {
           orderSuccess.setAttribute('data-show', 'true');
