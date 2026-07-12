@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="favicon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Admin — Dylan Jo</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Caveat:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF; --paper-warm:#F8F5EF; --ink:#221F1B; --ink-soft:#75705F;
+    --rule:#E7E1D3; --accent:#A65A45; --ok:#3F7A4F; --pending:#B3892C; --bad:#B3392C;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper-warm);color:var(--ink);font-family:'Poppins',sans-serif;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+  h1{font-family:'Caveat',cursive;font-weight:700;font-size:2rem;margin:0;}
+  .wrap{max-width:1000px;margin:0 auto;padding:32px 20px 80px;}
+  .topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:12px;}
+  .btn{border:1px solid var(--ink);background:transparent;color:var(--ink);border-radius:999px;padding:9px 18px;font-family:'Poppins',sans-serif;font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.03em;cursor:pointer;transition:background .2s,color .2s;}
+  .btn:hover{background:var(--ink);color:#fff;}
+  .btn.small{padding:6px 12px;font-size:0.72rem;}
+  .btn:disabled{opacity:0.5;cursor:default;}
+
+  #login-screen{max-width:360px;margin:120px auto;background:var(--paper);border:1px solid var(--rule);border-radius:16px;padding:36px;text-align:center;}
+  #login-screen input{width:100%;padding:12px 14px;border:1px solid var(--rule);border-radius:10px;font-size:0.95rem;margin:16px 0;font-family:'Poppins',sans-serif;}
+  #login-error{color:var(--bad);font-size:0.85rem;min-height:1.2em;}
+
+  #app{display:none;}
+  .order-card{background:var(--paper);border:1px solid var(--rule);border-radius:14px;padding:20px 22px;margin-bottom:18px;}
+  .order-head{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;margin-bottom:14px;}
+  .order-id{font-size:0.72rem;color:var(--ink-soft);word-break:break-all;}
+  .order-meta{font-size:0.85rem;color:var(--ink-soft);}
+  .badge{display:inline-block;padding:4px 10px;border-radius:999px;font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.03em;}
+  .badge.paid{background:#3F7A4F20;color:var(--ok);}
+  .badge.pending{background:#B3892C20;color:var(--pending);}
+  .badge.canceled,.badge.failed{background:#B3392C20;color:var(--bad);}
+  .badge.fulfilled{background:#3F5A7320;color:#3F5A73;}
+
+  .item-row{display:flex;gap:14px;padding:12px 0;border-top:1px solid var(--rule);align-items:flex-start;flex-wrap:wrap;}
+  .item-row img{width:56px;height:56px;object-fit:cover;border-radius:8px;border:1px solid var(--rule);}
+  .item-info{flex:1;min-width:200px;}
+  .item-name{font-weight:600;}
+  .item-variant{color:var(--ink-soft);font-size:0.85rem;}
+  .item-custom{font-size:0.78rem;color:var(--ink-soft);margin-top:4px;white-space:pre-wrap;}
+  .item-price{font-family:'Poppins',sans-serif;font-weight:700;white-space:nowrap;}
+
+  .fulfill-row{display:flex;gap:10px;align-items:center;margin-top:16px;flex-wrap:wrap;}
+  .fulfill-row input[type="text"]{flex:1;min-width:160px;padding:8px 10px;border:1px solid var(--rule);border-radius:8px;font-size:0.85rem;font-family:'Poppins',sans-serif;}
+  label.checkline{display:flex;align-items:center;gap:6px;font-size:0.85rem;}
+
+  #status-msg{font-size:0.85rem;color:var(--ink-soft);margin-bottom:14px;}
+  .empty{text-align:center;color:var(--ink-soft);padding:60px 0;}
+</style>
+</head>
+<body>
+
+<div id="login-screen">
+  <h1>Order Admin</h1>
+  <p style="color:var(--ink-soft);font-size:0.85rem;margin-top:8px;">Enter your admin key to view orders.</p>
+  <input type="password" id="admin-key-input" placeholder="Admin key" autocomplete="off">
+  <button class="btn" id="login-btn" style="width:100%;">Unlock</button>
+  <div id="login-error"></div>
+</div>
+
+<div id="app">
+  <div class="wrap">
+    <div class="topbar">
+      <h1>Orders</h1>
+      <div style="display:flex;gap:10px;">
+        <button class="btn small" id="refresh-btn">Refresh</button>
+        <button class="btn small" id="logout-btn">Log out</button>
+      </div>
+    </div>
+    <div id="status-msg"></div>
+    <div id="orders-list"></div>
+  </div>
+</div>
+
+<script>
+  const FUNCTIONS_URL = 'https://veossvhvxgmstmiijmkw.supabase.co/functions/v1';
+  const SESSION_KEY = 'dylanjo_admin_key';
+
+  const loginScreen = document.getElementById('login-screen');
+  const app = document.getElementById('app');
+  const keyInput = document.getElementById('admin-key-input');
+  const loginBtn = document.getElementById('login-btn');
+  const loginError = document.getElementById('login-error');
+  const ordersList = document.getElementById('orders-list');
+  const statusMsg = document.getElementById('status-msg');
+
+  function getKey() {
+    return sessionStorage.getItem(SESSION_KEY);
+  }
+
+  function money(cents) {
+    return '$' + (cents / 100).toFixed(2);
+  }
+
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str == null ? '' : String(str);
+    return div.innerHTML;
+  }
+
+  async function fetchOrders() {
+    statusMsg.textContent = 'Loading…';
+    const res = await fetch(`${FUNCTIONS_URL}/admin-orders`, {
+      headers: { 'x-admin-key': getKey() }
+    });
+    if (res.status === 401) {
+      sessionStorage.removeItem(SESSION_KEY);
+      showLogin('Admin key was rejected. Try again.');
+      return;
+    }
+    const data = await res.json();
+    statusMsg.textContent = data.orders && data.orders.length
+      ? `${data.orders.length} order${data.orders.length === 1 ? '' : 's'}`
+      : '';
+    renderOrders(data.orders || []);
+  }
+
+  function renderOrders(orders) {
+    if (!orders.length) {
+      ordersList.innerHTML = '<div class="empty">No orders yet.</div>';
+      return;
+    }
+    ordersList.innerHTML = orders.map(orderCardHtml).join('');
+
+    orders.forEach((o) => {
+      const card = document.getElementById('order-' + o.id);
+      if (!card) return;
+      const saveBtn = card.querySelector('.save-btn');
+      const fulfilledBox = card.querySelector('.fulfilled-box');
+      const trackingInput = card.querySelector('.tracking-input');
+      saveBtn.addEventListener('click', async () => {
+        saveBtn.disabled = true;
+        saveBtn.textContent = 'Saving…';
+        try {
+          await fetch(`${FUNCTIONS_URL}/admin-orders?order_id=${o.id}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json', 'x-admin-key': getKey() },
+            body: JSON.stringify({
+              fulfilled: fulfilledBox.checked,
+              tracking_number: trackingInput.value
+            })
+          });
+          await fetchOrders();
+        } catch (e) {
+          alert('Could not save changes.');
+          saveBtn.disabled = false;
+          saveBtn.textContent = 'Save';
+        }
+      });
+    });
+  }
+
+  function orderCardHtml(o) {
+    const statusClass = o.status || 'pending';
+    const itemsHtml = (o.items || []).map((it) => `
+      <div class="item-row">
+        ${it.photo_url ? `<img src="${it.photo_url}" alt="Reference photo">` : ''}
+        <div class="item-info">
+          <div class="item-name">${escapeHtml(it.product_name)} × ${it.quantity}</div>
+          ${it.variant ? `<div class="item-variant">${escapeHtml(it.variant)}</div>` : ''}
+          ${it.customization ? `<div class="item-custom">${escapeHtml(JSON.stringify(it.customization))}</div>` : ''}
+        </div>
+        <div class="item-price">${money(it.unit_price_cents * it.quantity)}</div>
+      </div>
+    `).join('');
+
+    return `
+      <div class="order-card" id="order-${o.id}">
+        <div class="order-head">
+          <div>
+            <span class="badge ${statusClass}">${escapeHtml(o.status)}</span>
+            ${o.fulfilled ? '<span class="badge fulfilled">fulfilled</span>' : ''}
+            <div class="order-meta" style="margin-top:6px;">
+              ${o.customer_name ? escapeHtml(o.customer_name) + ' · ' : ''}${o.customer_email ? escapeHtml(o.customer_email) : 'No email yet'}
+            </div>
+            <div class="order-meta">${new Date(o.created_at).toLocaleString()}</div>
+            ${o.shipping_address ? `<div class="order-meta">${escapeHtml([o.shipping_address.line1, o.shipping_address.line2, o.shipping_address.city, o.shipping_address.state, o.shipping_address.postal_code, o.shipping_address.country].filter(Boolean).join(', '))}</div>` : ''}
+          </div>
+          <div style="text-align:right;">
+            <div style="font-weight:700;font-size:1.1rem;">${money(o.total_cents)}</div>
+            <div class="order-id">${o.id}</div>
+          </div>
+        </div>
+        ${itemsHtml}
+        <div class="fulfill-row">
+          <label class="checkline"><input type="checkbox" class="fulfilled-box" ${o.fulfilled ? 'checked' : ''}> Fulfilled</label>
+          <input type="text" class="tracking-input" placeholder="Tracking number" value="${escapeHtml(o.tracking_number || '')}">
+          <button class="btn small save-btn">Save</button>
+        </div>
+      </div>
+    `;
+  }
+
+  function showApp() {
+    loginScreen.style.display = 'none';
+    app.style.display = 'block';
+    fetchOrders();
+  }
+
+  function showLogin(message) {
+    app.style.display = 'none';
+    loginScreen.style.display = 'block';
+    loginError.textContent = message || '';
+    keyInput.value = '';
+    keyInput.focus();
+  }
+
+  loginBtn.addEventListener('click', () => {
+    const val = keyInput.value.trim();
+    if (!val) return;
+    sessionStorage.setItem(SESSION_KEY, val);
+    showApp();
+  });
+  keyInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') loginBtn.click(); });
+
+  document.getElementById('refresh-btn').addEventListener('click', fetchOrders);
+  document.getElementById('logout-btn').addEventListener('click', () => {
+    sessionStorage.removeItem(SESSION_KEY);
+    showLogin();
+  });
+
+  if (getKey()) {
+    showApp();
+  } else {
+    showLogin();
+  }
+</script>
+</body>
+</html>
