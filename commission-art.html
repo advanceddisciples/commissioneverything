@@ -26,6 +26,7 @@
     --wedding:#9C5A5A;
     --arch:#3F5A73;
     --people:#5C6E5A;
+    --design:#7A5C99;
     --footer-bg:#2E1F14;
     --footer-text:#E3C77D;
     --footer-rule:#4A3624;
@@ -360,10 +361,11 @@
   .plate-art.photo{padding:0;position:relative;}
   .plate-art.photo img{width:100%;height:100%;object-fit:cover;display:block;}
   .sold-badge{
-    position:absolute;bottom:10px;left:10px;
-    background:rgba(34,31,27,0.85);color:#F7F3EA;
-    font-family:'Poppins',sans-serif;font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;
-    padding:5px 11px;
+    position:absolute;bottom:12px;left:12px;border-radius:999px;
+    background:var(--accent);color:#fff;
+    font-family:'Poppins',sans-serif;font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;
+    padding:7px 15px;
+    box-shadow:0 4px 10px rgba(34,31,27,0.18);
   }
   .showcase-frame.photo{padding:0;}
   .showcase-frame.photo img{width:100%;height:100%;object-fit:cover;display:block;}
@@ -602,7 +604,7 @@
     <nav class="main" id="nav-main">
       <ul>
         <li><a href="index.html">Home</a></li>
-        <li><a href="gallery.html">Past Works</a></li>
+        <li><a href="gallery.html">Portfolio</a></li>
         <li class="has-dropdown">
           <button class="nav-drop-toggle" type="button" aria-expanded="false"><span class="nav-drop-label"><span class="nav-drop-label">Shop<span class="shop-dot"></span></span></span>
             <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
@@ -821,6 +823,36 @@
         </div>
       </div>
     </div>
+
+    <div class="price-block" style="--dot:var(--design);">
+      <div class="price-block-arch-grid">
+        <img class="price-block-arch-img" src="images/design-elgrantaco.png" alt="Example website design work for a local restaurant client">
+        <div>
+          <div class="price-block-head">
+            <span class="dot"></span>
+            <svg class="price-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="14" rx="1.5"/>
+              <path d="M3 8h18"/>
+              <path d="M8 21h8M12 18v3"/>
+            </svg>
+            <h3>Website Design</h3>
+          </div>
+          <table class="price-table reveal">
+            <thead><tr><th>Package</th><th>Pages</th><th>Price</th></tr></thead>
+            <tbody>
+              <tr><td>Starter</td><td>1–3 pages</td><td>$450</td></tr>
+              <tr><td>Standard</td><td>4–6 pages</td><td>$900</td></tr>
+              <tr><td>Full Custom</td><td>7+ pages / online store</td><td>from $1,500</td></tr>
+            </tbody>
+          </table>
+          <ul class="price-notes">
+            <li>Includes responsive design, up to 2 rounds of revisions, and basic on-page SEO</li>
+            <li>Online store/booking integrations, custom illustration, or copywriting quoted separately</li>
+            <li>Domain, hosting, and ongoing maintenance are not included</li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -844,6 +876,7 @@
           <div class="cat-pill" data-cat="pet" data-active="true">Pet Portrait</div>
           <div class="cat-pill" data-cat="wedding" data-active="false">People Portraiture</div>
           <div class="cat-pill" data-cat="architecture" data-active="false">Architectural Art</div>
+          <div class="cat-pill" data-cat="design" data-active="false">Website Design</div>
         </div>
       </div>
 
@@ -894,21 +927,62 @@
           </div>
         </div>
 
-        <div class="field">
-          <label for="medium">Medium</label>
-          <select id="medium" name="Medium">
-            <option>Graphite Drawing</option>
-            <option>Oil Painting (+ premium)</option>
-          </select>
+        <div class="sub-fields" id="sub-design" data-show="false">
+          <div class="field">
+            <label for="business-name">Business / Project Name</label>
+            <input type="text" id="business-name" name="Business or Project Name" placeholder="e.g. El Gran Taco">
+          </div>
+          <div class="field">
+            <label for="current-site">Current Website (if any)</label>
+            <input type="url" id="current-site" name="Current Website" placeholder="https://…">
+          </div>
+          <div class="field">
+            <label for="page-count">Pages Needed</label>
+            <select id="page-count" name="Pages Needed">
+              <option>1–3 pages</option>
+              <option>4–6 pages</option>
+              <option>7+ pages</option>
+              <option>I don't know yet</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="site-features">Must-Have Features</label>
+            <select id="site-features" name="Must-Have Features">
+              <option>Just a nice-looking informational site</option>
+              <option>Online store / payments</option>
+              <option>Online booking or reservations</option>
+              <option>Blog or news section</option>
+              <option>Other — describe below</option>
+            </select>
+          </div>
         </div>
-        <div class="field">
-          <label for="size">Preferred Size</label>
-          <select id="size" name="Preferred Size">
-            <option>Artist's recommendation</option>
-            <option>9×12"</option>
-            <option>11×14"</option>
-            <option>16×20"</option>
-            <option>Custom — describe below</option>
+
+        <div class="field-subgroup" id="art-only-fields" style="display:contents;">
+          <div class="field">
+            <label for="medium">Medium</label>
+            <select id="medium" name="Medium">
+              <option>Graphite Drawing</option>
+              <option>Oil Painting (+ premium)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="size">Preferred Size</label>
+            <select id="size" name="Preferred Size">
+              <option>Artist's recommendation</option>
+              <option>9×12"</option>
+              <option>11×14"</option>
+              <option>16×20"</option>
+              <option>Custom — describe below</option>
+            </select>
+          </div>
+        </div>
+        <div class="field" id="design-budget-field" style="display:none;">
+          <label for="budget">Budget Range</label>
+          <select id="budget" name="Budget Range">
+            <option>Under $500</option>
+            <option>$500–$1,000</option>
+            <option>$1,000–$2,000</option>
+            <option>$2,000+</option>
           </select>
         </div>
         <div class="field">
@@ -917,13 +991,13 @@
         </div>
 
         <div class="field full">
-          <label for="photos">Reference Photos</label>
+          <label for="photos" id="photos-label">Reference Photos</label>
           <label class="file-drop" for="photos" id="file-drop">
             <svg class="file-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 16V4M12 4l-4 4M12 4l4 4"/>
               <path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/>
             </svg>
-            <span class="file-drop-text">Click to attach photos<span class="file-drop-sub">JPG or PNG, up to 5 files</span></span>
+            <span class="file-drop-text" id="file-drop-text">Click to attach photos<span class="file-drop-sub">JPG or PNG, up to 5 files</span></span>
           </label>
           <input type="file" id="photos" name="Reference Photos" accept="image/*" multiple class="file-input">
           <div class="file-list" id="file-list"></div>
@@ -963,7 +1037,7 @@
         <h4>Useful Links</h4>
         <ul>
           <li><a href="index.html#biography">Biography</a></li>
-          <li><a href="gallery.html">Past Works</a></li>
+          <li><a href="gallery.html">Portfolio</a></li>
           <li><a href="prints.html">Prints</a></li>
           <li><a href="commission-art.html">Commission Art</a></li>
           <li><a href="reviews.html">Reviews</a></li>
@@ -976,6 +1050,7 @@
           <li><a href="#commission">Pet Portraits</a></li>
           <li><a href="#commission">People Portraiture</a></li>
           <li><a href="#commission">Architectural Art</a></li>
+          <li><a href="#commission">Website Design</a></li>
         </ul>
       </div>
       <div class="foot-col">
@@ -1071,12 +1146,29 @@
   const subFields = {
     pet: document.getElementById('sub-pet'),
     wedding: document.getElementById('sub-wedding'),
-    architecture: document.getElementById('sub-arch')
+    architecture: document.getElementById('sub-arch'),
+    design: document.getElementById('sub-design')
   };
-  const catLabels = { pet:'pet portrait', wedding:'people portraiture', architecture:'architectural art' };
-  const catFullLabels = { pet:'Pet Portrait', wedding:'People Portraiture', architecture:'Architectural Art' };
+  const catLabels = { pet:'pet portrait', wedding:'people portraiture', architecture:'architectural art', design:'website design' };
+  const catFullLabels = { pet:'Pet Portrait', wedding:'People Portraiture', architecture:'Architectural Art', design:'Website Design' };
   const categoryField = document.getElementById('category-field');
+  const artOnlyFields = document.getElementById('art-only-fields');
+  const designBudgetField = document.getElementById('design-budget-field');
+  const photosLabel = document.getElementById('photos-label');
+  const fileDropText = document.getElementById('file-drop-text');
   let currentCat = 'pet';
+
+  function applyCategoryFieldVisibility(cat) {
+    const isDesign = cat === 'design';
+    if (artOnlyFields) artOnlyFields.style.display = isDesign ? 'none' : 'contents';
+    if (designBudgetField) designBudgetField.style.display = isDesign ? '' : 'none';
+    if (photosLabel) photosLabel.innerHTML = isDesign
+      ? 'Screenshots / Style References <span style="text-transform:none;font-weight:400;color:var(--ink-soft);">(optional)</span>'
+      : 'Reference Photos';
+    if (fileDropText) fileDropText.innerHTML = isDesign
+      ? 'Click to attach screenshots or examples<span class="file-drop-sub">JPG or PNG, up to 5 files</span>'
+      : 'Click to attach photos<span class="file-drop-sub">JPG or PNG, up to 5 files</span>';
+  }
 
   pills.forEach(pill => {
     pill.addEventListener('click', () => {
@@ -1086,6 +1178,7 @@
       Object.entries(subFields).forEach(([key, el]) => {
         el.setAttribute('data-show', key === currentCat ? 'true' : 'false');
       });
+      applyCategoryFieldVisibility(currentCat);
       if (categoryField) categoryField.value = catFullLabels[currentCat];
     });
   });
@@ -1152,6 +1245,16 @@
       e.preventDefault();
       if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
       const data = new FormData(form);
+      // Best-effort: also record this inquiry in the admin dashboard.
+      try {
+        const plainData = Object.fromEntries(data.entries());
+        delete plainData['Reference Photos'];
+        fetch('https://veossvhvxgmstmiijmkw.supabase.co/functions/v1/capture-inquiry', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(plainData)
+        }).catch(() => {});
+      } catch (e) {}
       fetch('https://formsubmit.co/ajax/dcho90014@gmail.com', {
         method: 'POST',
         headers: { 'Accept': 'application/json' },
@@ -1165,6 +1268,7 @@
           form.reset();
           pills.forEach(p => p.setAttribute('data-active', p.getAttribute('data-cat') === 'pet' ? 'true' : 'false'));
           Object.entries(subFields).forEach(([key, el]) => el.setAttribute('data-show', key === 'pet' ? 'true' : 'false'));
+          applyCategoryFieldVisibility('pet');
           if (categoryField) categoryField.value = catFullLabels.pet;
           if (fileList) fileList.textContent = '';
           currentCat = 'pet';

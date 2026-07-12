@@ -61,7 +61,47 @@ function cartSaveItems(items) {
     console.error('Cart save error:', e);
   }
   cartUpdateBadge();
+  cartSyncToServer(items);
   window.dispatchEvent(new CustomEvent('cart:updated', { detail: { items } }));
+}
+
+const CART_SESSION_KEY = 'dylanjo_cart_session_id';
+function cartGetSessionId() {
+  try {
+    let id = localStorage.getItem(CART_SESSION_KEY);
+    if (!id) {
+      id = (crypto.randomUUID ? crypto.randomUUID() : 'cart-' + Date.now() + '-' + Math.random().toString(36).slice(2));
+      localStorage.setItem(CART_SESSION_KEY, id);
+    }
+    return id;
+  } catch (e) {
+    return null;
+  }
+}
+
+let _cartSyncTimer = null;
+/**
+ * Best-effort, debounced sync of the cart to Supabase so the shop owner can
+ * see active/abandoned carts in the admin dashboard. Never blocks the UI.
+ */
+function cartSyncToServer(items) {
+  clearTimeout(_cartSyncTimer);
+  _cartSyncTimer = setTimeout(() => {
+    const cartId = cartGetSessionId();
+    if (!cartId) return;
+    fetch(`${FUNCTIONS_URL}/sync-cart`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_ANON_KEY
+      },
+      body: JSON.stringify({
+        cart_id: cartId,
+        items: items.map(i => ({ name: i.name, variant: i.variant, price: i.price, qty: i.qty }))
+      })
+    }).catch(() => { /* best-effort only */ });
+  }, 800);
 }
 
 /**
@@ -132,6 +172,7 @@ function cartBuildCheckoutPayload() {
       customization: i.customization || null,
       photo_path: i.photo_path || null
     })),
+    cart_id: cartGetSessionId(),
     subtotal_usd: cartGetSubtotal(),
     currency: 'usd',
     created_at: new Date().toISOString()
@@ -165,5 +206,27 @@ async function cartCheckout(customerEmail) {
   }
   window.location.href = data.url;
 }
+
+/**
+ * Fire-and-forget page view beacon. Runs once per page load on every page
+ * that includes cart.js. No cookies, no fingerprinting — just a path.
+ */
+(function trackPageView() {
+  try {
+    fetch(`${FUNCTIONS_URL}/track-visit`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_ANON_KEY
+      },
+      body: JSON.stringify({
+        path: window.location.pathname,
+        referrer: document.referrer || null
+      }),
+      keepalive: true
+    }).catch(() => { /* tracking is best-effort only */ });
+  } catch (e) { /* ignore */ }
+})();
 
 document.addEventListener('DOMContentLoaded', cartUpdateBadge);

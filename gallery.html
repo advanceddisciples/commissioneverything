@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <link rel="icon" type="image/png" href="favicon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Past Works — Dylan Jo</title>
-<meta name="description" content="Browse past pet portrait, people portraiture, and architectural art commissions by Seattle painter Dylan Jo.">
-<meta property="og:title" content="Past Works — Dylan Jo">
-<meta property="og:description" content="Browse past pet portrait, people portraiture, and architectural art commissions by Seattle painter Dylan Jo.">
+<title>Portfolio — Dylan Jo</title>
+<meta name="description" content="Browse art commissions (pet portraits, people, architecture) and website design work by Dylan Jo.">
+<meta property="og:title" content="Portfolio — Dylan Jo">
+<meta property="og:description" content="Browse art commissions (pet portraits, people, architecture) and website design work by Dylan Jo.">
 <meta property="og:image" content="og-image.jpg">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -269,7 +269,7 @@
   @media (max-width:560px){ .masonry{column-count:1;} }
   .frame{
     break-inside:avoid;margin-bottom:22px;background:var(--paper-warm);
-    border:1px solid var(--rule);overflow:hidden;
+    border:1px solid var(--rule);overflow:hidden;border-radius:16px;
   }
   .frame-img{position:relative;}
   .frame img{
@@ -278,10 +278,11 @@
   }
   .frame:hover img{transform:scale(1.045);}
   .sold-badge{
-    position:absolute;bottom:10px;left:10px;
-    background:rgba(34,31,27,0.85);color:#F7F3EA;
-    font-family:'Poppins',sans-serif;font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;
-    padding:5px 11px;
+    position:absolute;bottom:12px;left:12px;border-radius:999px;
+    background:var(--accent);color:#fff;
+    font-family:'Poppins',sans-serif;font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;
+    padding:7px 15px;
+    box-shadow:0 4px 10px rgba(34,31,27,0.18);
   }
   .frame-cap{
     padding:12px 14px 15px;border-top:1px solid var(--rule);
@@ -313,6 +314,44 @@
   @keyframes heroRise{to{opacity:1;transform:translateY(0);}}
 
   .cta-row{text-align:center;margin-top:60px;}
+
+  .product-picker{padding:8px 0 32px;border-bottom:1px solid var(--rule);margin-bottom:56px;}
+  .product-picker-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:420px;margin:0 auto;}
+  .product-picker-item{
+    display:flex;cursor:pointer;background:none;border:none;padding:0;font:inherit;
+    outline:none;-webkit-tap-highlight-color:transparent;position:relative;
+  }
+  .product-picker-box{
+    width:100%;padding:22px 0;border-radius:16px;background:var(--paper-warm);
+    box-shadow:0 6px 18px rgba(34,31,27,0.08);transition:transform 0.3s cubic-bezier(.22,1,.36,1),box-shadow 0.3s ease,outline-color 0.25s;
+    outline:2px solid transparent;outline-offset:3px;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Poppins',sans-serif;font-weight:700;font-size:0.95rem;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink);
+  }
+  .product-picker-item:hover .product-picker-box{transform:translateY(-4px);box-shadow:0 14px 28px rgba(34,31,27,0.14);}
+  .product-picker-item.is-active .product-picker-box{outline-color:var(--ink);}
+  .hub-badge{
+    position:absolute;top:-10px;right:-10px;z-index:3;border-radius:999px;
+    background:var(--accent);color:#fff;padding:6px 14px;
+    font-family:'Poppins',sans-serif;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;
+    box-shadow:0 4px 10px rgba(34,31,27,0.18);
+  }
+
+  .design-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:32px;
+  }
+  .design-card{
+    display:block;border:1px solid var(--rule);border-radius:18px;overflow:hidden;
+    background:var(--paper-warm);text-decoration:none;
+    transition:box-shadow 0.4s ease,transform 0.4s ease;
+  }
+  .design-card:hover{transform:translateY(-4px);box-shadow:0 18px 34px rgba(34,31,27,0.12);}
+  .design-card-img{aspect-ratio:4/3;overflow:hidden;}
+  .design-card-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s ease;}
+  .design-card:hover .design-card-img img{transform:scale(1.045);}
+  .design-card-cap{padding:18px 20px;}
+  .design-card-name{display:block;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.25rem;color:var(--ink);}
+  .design-card-desc{display:block;font-size:0.82rem;color:var(--ink-soft);margin-top:4px;}
 
   footer.site{background:var(--footer-bg);color:var(--footer-text);padding:76px 0 30px;}
   .foot-grid{
@@ -392,7 +431,7 @@
     <nav class="main" id="nav-main">
       <ul>
         <li><a href="index.html">Home</a></li>
-        <li><a href="gallery.html" aria-current="page">Past Works</a></li>
+        <li><a href="gallery.html" aria-current="page">Portfolio</a></li>
         <li class="has-dropdown">
           <button class="nav-drop-toggle" type="button" aria-expanded="false"><span class="nav-drop-label">Shop<span class="shop-dot"></span></span>
             <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
@@ -436,12 +475,28 @@
 </header>
 
 <div class="page-title wrap">
-  <span class="eyebrow hero-anim">Portfolio</span>
-  <h1 class="hero-anim d1">Past Works</h1>
-  <p class="hero-anim d2">A selection of pieces from the sketchbook and studio — graphite studies and oil paintings, worked from photos much like the ones you'd send for a commission.</p>
+  <span class="eyebrow hero-anim">Selected Work</span>
+  <h1 class="hero-anim d1">Portfolio</h1>
 </div>
 
-<section style="padding-top:0;">
+<div class="wrap">
+  <div class="product-picker">
+    <div class="product-picker-grid">
+      <button type="button" class="product-picker-item is-active" data-category="art">
+        <span class="product-picker-box">Art</span>
+      </button>
+      <button type="button" class="product-picker-item" data-category="design">
+        <span class="hub-badge" style="background:#E8792E;">New</span>
+        <span class="product-picker-box">Design</span>
+      </button>
+    </div>
+    <div class="cta-row" style="margin-top:32px;">
+      <a href="commission-art.html#commission" class="btn btn-accent">Start a Commission</a>
+    </div>
+  </div>
+</div>
+
+<section id="portfolio-art" style="padding-top:0;">
   <div class="wrap">
     <div class="masonry reveal-group">
       <div class="frame reveal-item">
@@ -454,7 +509,6 @@
       <div class="frame reveal-item">
         <div class="frame-img">
           <img src="images/gallery-2.jpg" alt="Graphite portrait study of a hound's head">
-          <span class="sold-badge">Sold</span>
         </div>
         <div class="frame-cap">graphite portrait study</div>
       </div>
@@ -531,14 +585,12 @@
       <div class="frame reveal-item">
         <div class="frame-img">
           <img src="images/gallery-13.jpg" alt="Oil painting of a woman in profile against a blue and green background">
-          <span class="sold-badge">Sold</span>
         </div>
         <div class="frame-cap">oil on board</div>
       </div>
       <div class="frame reveal-item">
         <div class="frame-img">
           <img src="images/gallery-14.jpg" alt="Oil painting of two women seated together">
-          <span class="sold-badge">Sold</span>
         </div>
         <div class="frame-cap">oil on canvas, double portrait</div>
       </div>
@@ -546,6 +598,35 @@
 
     <div class="cta-row">
       <a href="commission-art.html#commission" class="btn btn-accent">Start a Commission</a>
+    </div>
+  </div>
+</section>
+
+<section id="portfolio-design" style="padding-top:0;display:none;">
+  <div class="wrap">
+    <div class="design-grid reveal-group">
+      <a class="design-card reveal-item" href="https://elgrantacoseattle.com/" target="_blank" rel="noopener">
+        <div class="design-card-img">
+          <img src="images/design-elgrantaco.png" alt="El Gran Taco Seattle website design">
+        </div>
+        <div class="design-card-cap">
+          <span class="design-card-name">El Gran Taco</span>
+          <span class="design-card-desc">Restaurant website — elgrantacoseattle.com</span>
+        </div>
+      </a>
+      <a class="design-card reveal-item" href="https://narateriyakiandpho.com/" target="_blank" rel="noopener">
+        <div class="design-card-img">
+          <img src="images/design-narateriyaki.png" alt="Nara Teriyaki and Pho website design">
+        </div>
+        <div class="design-card-cap">
+          <span class="design-card-name">Nara Teriyaki &amp; Pho</span>
+          <span class="design-card-desc">Restaurant website — narateriyakiandpho.com</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="cta-row">
+      <a href="commission-art.html#commission" class="btn btn-accent">Start a Design Commission</a>
     </div>
   </div>
 </section>
@@ -571,7 +652,7 @@
         <h4>Useful Links</h4>
         <ul>
           <li><a href="index.html#biography">Biography</a></li>
-          <li><a href="gallery.html">Past Works</a></li>
+          <li><a href="gallery.html">Portfolio</a></li>
           <li><a href="prints.html">Prints</a></li>
           <li><a href="commission-art.html">Commission Art</a></li>
           <li><a href="reviews.html">Reviews</a></li>
@@ -702,6 +783,20 @@
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
   revealTargets.forEach(el => revealIO.observe(el));
+
+  // Portfolio category picker (Art / Design)
+  const categoryBoxes = document.querySelectorAll('.product-picker-item');
+  const portfolioSections = { art: document.getElementById('portfolio-art'), design: document.getElementById('portfolio-design') };
+  categoryBoxes.forEach((box) => {
+    box.addEventListener('click', () => {
+      const cat = box.dataset.category;
+      categoryBoxes.forEach(b => b.classList.toggle('is-active', b === box));
+      Object.entries(portfolioSections).forEach(([key, section]) => {
+        if (section) section.style.display = key === cat ? '' : 'none';
+      });
+      portfolioSections[cat].scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
 </script>
 
 </body>
