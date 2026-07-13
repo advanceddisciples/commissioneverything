@@ -198,7 +198,6 @@
   }
   .header-social a:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px);}
   .header-social svg{width:15px;height:15px;}
-  .header-social .patreon-glyph{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:0.95rem;line-height:1;}
   @media (max-width:480px){ .header-social a{width:26px;height:26px;} .header-social svg{width:13px;height:13px;} }
   @media (max-width:860px){ .header-social{order:3;} }
   .cart-btn{
@@ -616,15 +615,13 @@
         </li>
         <li><a href="commission-art.html" aria-current="page">Commissions</a></li>
         <li><a href="#prices">Prices</a></li>
+        <li><a href="index.html#bio-panel">Contact</a></li>
       </ul>
     </nav>
     <div class="header-actions">
       <div class="header-social">
         <a href="https://www.instagram.com/commissioneverything?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" aria-label="Instagram">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.5" cy="6.5" r="1"/></svg>
-        </a>
-        <a href="https://patreon.com/commissioneverything" target="_blank" rel="noopener" aria-label="Patreon">
-          <span class="patreon-glyph">P</span>
         </a>
         <a href="https://www.tiktok.com/@commissioneverything?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener" aria-label="TikTok">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3c.4 2.2 1.8 3.7 4.1 3.9v2.9c-1.4.1-2.7-.3-4.1-1.1v6.8c0 3.4-2.5 6-6 6-3.4 0-6-2.6-6-6s2.6-6 6-6c.4 0 .8 0 1.1.1v3c-.4-.1-.7-.2-1.1-.2-1.7 0-3 1.3-3 3s1.3 3 3 3 3-1.3 3-3V3h2.9z"/></svg>
@@ -1027,9 +1024,11 @@
           <a href="https://www.instagram.com/commissioneverything?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" aria-label="Instagram">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1"/></svg>
           </a>
-          <a href="https://patreon.com/commissioneverything" target="_blank" rel="noopener" aria-label="Patreon" style="font-family:'Cormorant Garamond',serif;font-weight:700;">P</a>
           <a href="https://www.tiktok.com/@commissioneverything?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener" aria-label="TikTok">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3c.4 2.2 1.8 3.7 4.1 3.9v2.9c-1.4.1-2.7-.3-4.1-1.1v6.8c0 3.4-2.5 6-6 6-3.4 0-6-2.6-6-6s2.6-6 6-6c.4 0 .8 0 1.1.1v3c-.4-.1-.7-.2-1.1-.2-1.7 0-3 1.3-3 3s1.3 3 3 3 3-1.3 3-3V3h2.9z"/></svg>
+          </a>
+          <a href="mailto:dcho90014@gmail.com" aria-label="Email">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
           </a>
         </div>
       </div>
@@ -1042,6 +1041,7 @@
           <li><a href="commission-art.html">Commission Art</a></li>
           <li><a href="reviews.html">Reviews</a></li>
           <li><a href="#prices">Prices</a></li>
+        <li><a href="index.html#bio-panel">Contact</a></li>
         </ul>
       </div>
       <div class="foot-col">
@@ -1132,6 +1132,18 @@
 
   // ---- scroll-triggered reveals ----
   const revealTargets = document.querySelectorAll('.reveal, .reveal-group');
+  function revealIfVisible(el) {
+    const r = el.getBoundingClientRect();
+    if (r.top < window.innerHeight && r.bottom > 0) {
+      el.classList.add('in-view');
+      return true;
+    }
+    return false;
+  }
+  // Reveal anything already on-screen immediately, so content never waits on
+  // a scroll or tap to appear (IntersectionObserver's rootMargin can otherwise
+  // miss items sitting right at the initial viewport edge on page load).
+  revealTargets.forEach(el => revealIfVisible(el));
   const revealIO = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -1140,7 +1152,26 @@
       }
     });
   }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
-  revealTargets.forEach(el => revealIO.observe(el));
+  revealTargets.forEach(el => {
+    if (!el.classList.contains('in-view')) revealIO.observe(el);
+  });
+  // Safety net: catch anything whose position shifted after images/fonts
+  // finished loading (so it never gets stranded invisible).
+  window.addEventListener('load', () => {
+    revealTargets.forEach(el => { if (!el.classList.contains('in-view')) revealIfVisible(el); });
+  });
+
+  // Safety net: some mobile browsers (notably iOS Safari after a
+  // prerender/bfcache restore) can delay the IntersectionObserver's first
+  // callback until the user interacts with the page, leaving content stuck
+  // at opacity:0. Force-reveal anything still hidden shortly after load.
+  function forceRevealStuckElements() {
+    revealTargets.forEach(el => {
+      if (!el.classList.contains('in-view')) el.classList.add('in-view');
+    });
+  }
+  window.addEventListener('load', () => { setTimeout(forceRevealStuckElements, 800); });
+  setTimeout(forceRevealStuckElements, 1800);
 
   const pills = document.querySelectorAll('.cat-pill');
   const subFields = {
@@ -1170,18 +1201,28 @@
       : 'Click to attach photos<span class="file-drop-sub">JPG or PNG, up to 5 files</span>';
   }
 
-  pills.forEach(pill => {
-    pill.addEventListener('click', () => {
-      pills.forEach(p => p.setAttribute('data-active','false'));
-      pill.setAttribute('data-active','true');
-      currentCat = pill.getAttribute('data-cat');
-      Object.entries(subFields).forEach(([key, el]) => {
-        el.setAttribute('data-show', key === currentCat ? 'true' : 'false');
-      });
-      applyCategoryFieldVisibility(currentCat);
-      if (categoryField) categoryField.value = catFullLabels[currentCat];
+  function selectCategory(cat, pill) {
+    pills.forEach(p => p.setAttribute('data-active', p === pill ? 'true' : 'false'));
+    currentCat = cat;
+    Object.entries(subFields).forEach(([key, el]) => {
+      el.setAttribute('data-show', key === currentCat ? 'true' : 'false');
     });
+    applyCategoryFieldVisibility(currentCat);
+    if (categoryField) categoryField.value = catFullLabels[currentCat];
+  }
+
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => selectCategory(pill.getAttribute('data-cat'), pill));
   });
+
+  // Auto-select category when arriving from a "Start a Commission" link
+  // that specifies one, e.g. commission-art.html?category=design#commission
+  (function applyCategoryFromUrl() {
+    const requested = new URLSearchParams(window.location.search).get('category');
+    if (!requested) return;
+    const matchPill = Array.from(pills).find(p => p.getAttribute('data-cat') === requested);
+    if (matchPill) selectCategory(requested, matchPill);
+  })();
 
   // ---- reference photo upload ----
   const photoInput = document.getElementById('photos');
