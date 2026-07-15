@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lectures — Archive</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: monospace;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #000;
+      background: #fff;
+      padding: 20px;
+    }
+
+    a { color: #00e; text-decoration: underline; }
+    a:visited { color: #551a8b; }
+    a:hover { color: #f00; }
+
+    hr { border: none; border-top: 1px solid #000; margin: 12px 0; }
+
+    #topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 11px;
+      color: #888;
+      margin-bottom: 16px;
+      letter-spacing: 0.03em;
+    }
+
+    #topbar a { font-size: 11px; color: #00e; text-decoration: underline; }
+    #topbar a:visited { color: #551a8b; }
+
+    #layout {
+      display: flex;
+      gap: 40px;
+      align-items: flex-start;
+    }
+
+    #nav {
+      font-size: 13px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 100px;
+      position: sticky;
+      top: 20px;
+      align-self: flex-start;
+    }
+
+    #nav a { display: block; }
+
+    #content {
+      flex: 1;
+      max-width: 800px;
+    }
+
+    .lecture {
+      margin-bottom: 32px;
+      padding-bottom: 32px;
+      border-bottom: 1px dotted #ccc;
+    }
+
+    .lecture:last-child {
+      border-bottom: none;
+    }
+
+    .lecture-meta {
+      font-size: 11px;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 5px;
+    }
+
+    .lecture h2 {
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 6px;
+      line-height: 1.5;
+    }
+
+    .lecture p {
+      font-size: 12px;
+      color: #555;
+      max-width: 560px;
+      line-height: 1.8;
+    }
+
+    .lecture-link {
+      font-size: 12px;
+      margin-top: 8px;
+      display: block;
+    }
+
+    #footer {
+      margin-top: 40px;
+      font-size: 12px;
+      color: #555;
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 600px) {
+      body { padding: 14px; font-size: 13px; }
+
+      #topbar {
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      #layout {
+        flex-direction: column;
+        gap: 24px;
+        padding-top: 20px;
+        min-height: unset;
+      }
+
+      #nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px 20px;
+        position: static;
+        min-width: unset;
+      }
+
+      #manifesto {
+        min-height: unset;
+        padding-top: 0;
+        justify-content: flex-start;
+      }
+
+      #content { max-width: 100%; }
+
+      .entry img { width: 100%; }
+
+      .grid { grid-template-columns: repeat(2, 1fr); }
+
+      .form-row-inline { flex-direction: column; gap: 0; }
+
+      .details { flex-direction: column; gap: 12px; }
+
+      .page-header { flex-direction: column; gap: 4px; }
+
+      .timeline td.year { min-width: 54px; padding-right: 10px; }
+
+      #pagination { flex-direction: column; gap: 12px; }
+      #pagination a { max-width: 100%; }
+
+      .tabs { flex-wrap: wrap; gap: 10px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="topbar">
+    <span id="time-on-earth"># of First Snow: 24 times calculating...</span>
+    <span>reach out &nbsp;&nbsp;<a href="https://instagram.com/d.hamanjo" target="_blank">instagram // @d.hamanjo</a></span>
+  </div>
+
+  <hr>
+
+  <div id="layout">
+
+    <div id="nav">
+      <a href="objects.html">Objects</a>
+      <a href="chronology.html">Chronology</a>
+      <a href="lectures.html">Lectures</a>
+    </div>
+
+    <div id="content">
+
+      <div style="font-size:13px;color:#888;margin-bottom:28px;">coming soon</div>
+
+
+
+    </div>
+  </div>
+
+  <hr>
+
+  <div id="footer">
+    &copy; 2026 Advanced Disciples &nbsp;·&nbsp; All rights reserved
+  </div>
+
+  <script>
+    const BIRTH = new Date(2001, 8, 3);
+    function update() {
+      const now = new Date();
+      const diff = now - BIRTH;
+      const s = Math.floor(diff / 1000);
+      const sec = s % 60;
+      const m = Math.floor(s / 60);
+      const min = m % 60;
+      const h = Math.floor(m / 60);
+      const hrs = h % 24;
+      const totalDays = Math.floor(h / 24);
+      const years = Math.floor(totalDays / 365.25);
+      const days = Math.floor(totalDays % 365.25);
+      document.getElementById("time-on-earth").textContent =
+        "# of First Snow: 24 times " + years + "y " + days + "d " +
+        String(hrs).padStart(2,"0") + "h " +
+        String(min).padStart(2,"0") + "m " +
+        String(sec).padStart(2,"0") + "s";
+    }
+    update();
+    setInterval(update, 1000);
+  </script>
+
+</body>
+</html>
