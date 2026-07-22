@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <link rel="icon" type="image/png" href="favicon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Engravings — Dylan Jo</title>
-<meta name="description" content="Custom engraved necklaces and keychains featuring your pet's portrait, digitally illustrated by real artist Dylan Jo.">
-<meta property="og:title" content="Engravings — Dylan Jo">
-<meta property="og:description" content="Custom engraved necklaces and keychains featuring your pet's portrait, digitally illustrated by real artist Dylan Jo.">
+<title>Prints — Dylan J</title>
+<meta name="description" content="Custom pet portrait mugs, phone cases, necklaces, and keychains, digitally illustrated by real artist Dylan J.">
+<meta property="og:title" content="Prints — Dylan J">
+<meta property="og:description" content="Custom pet portrait mugs, phone cases, necklaces, and keychains, digitally illustrated by real artist Dylan J.">
 <meta property="og:image" content="og-image.jpg">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -523,8 +523,8 @@
             <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
           </button>
           <ul class="nav-dropdown">
-            <li><a href="prints.html">Prints</a></li>
-            <li><a href="engravings.html">Engravings</a></li>
+            <li><a href="engravings.html">Prints</a></li>
+            <li><a href="goods.html">Goods</a></li>
           </ul>
         </li>
         <li><a href="commission-art.html">Commissions</a></li>
@@ -561,8 +561,16 @@
 
 <div class="product-picker">
   <div class="wrap">
-    <div class="product-picker-grid">
-      <button type="button" class="product-picker-item is-active" data-show="necklace">
+    <div class="product-picker-grid" style="grid-template-columns:1fr 1fr 1fr 1fr;max-width:640px;">
+      <button type="button" class="product-picker-item is-active" data-show="mug">
+        <span class="product-picker-box"><img src="images/prints-1.jpg" alt="Custom Pet Portrait Mug"></span>
+        <span class="product-picker-label">Mug</span>
+      </button>
+      <button type="button" class="product-picker-item" data-show="phonecase">
+        <span class="product-picker-box"><img src="images/prints-2.webp" alt="Custom Pet Portrait Phone Cases"></span>
+        <span class="product-picker-label">Phone Case</span>
+      </button>
+      <button type="button" class="product-picker-item" data-show="necklace">
         <span class="product-picker-box"><img src="images/engravings-1.jpg" alt="Custom Pet Portrait Necklace"></span>
         <span class="product-picker-label">Necklace</span>
       </button>
@@ -574,7 +582,175 @@
   </div>
 </div>
 
-<section id="necklace" class="product-view is-active">
+<section style="padding-top:70px;" id="mug" class="product-view is-active">
+  <div class="wrap">
+    <div class="product-grid reveal">
+      <div>
+        <img class="product-gallery-main" id="product-main-img" src="images/prints-1.jpg" alt="Custom pet portrait mug featuring an illustrated Goldendoodle, named Bear">
+        <div class="product-gallery-thumbs">
+          <img src="images/prints-1.jpg" data-full="mug-bear" alt="Thumbnail: Bear mug" class="is-active">
+          <img src="images/prints-5.jpg" data-full="mug-zoey-name" alt="Thumbnail: Zoey mug with name">
+          <img src="images/prints-6.jpg" data-full="mug-zoey-noname" alt="Thumbnail: Zoey mug without name">
+          <img src="images/prints-7.jpg" data-full="mug-size-compare2" alt="Thumbnail: size comparison">
+          <img src="images/prints-8.jpg" data-full="mug-lifestyle-westie" alt="Thumbnail: westie portrait mug">
+          <img src="images/prints-9.jpg" data-full="mug-lifestyle-dalmatian" alt="Thumbnail: dalmatian portrait mug">
+        </div>
+      </div>
+      <div>
+        <span class="eyebrow" style="color:#C9A574;">Featured Good</span>
+        <h1 style="font-size:clamp(1.9rem,3.6vw,2.6rem);margin-top:8px;line-height:1.05;">Custom Pet Portrait Mug</h1>
+        <div class="product-price" id="product-price">$30.99</div>
+        <p class="price-intro" style="margin-top:14px;">Warm up your morning with your pet's portrait on your favorite mug — <u>digitally</u> illustrated from your own photo by a real artist.</p>
+        <ul class="price-notes" style="margin-top:14px;">
+          <li><strong style="color:var(--ink);">Upload</strong> a photo of your pet</li>
+          <li>I <strong style="color:var(--ink);">illustrate</strong> a custom portrait based on your photo</li>
+          <li><strong style="color:var(--ink);">Sit tight</strong> — your mug ships in 1–2 weeks</li>
+        </ul>
+
+        <form id="mug-order-form">
+          <input type="hidden" name="_subject" value="New Mug Order — Dylan J">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" id="mug-name-field" name="Pet Name on Mug" value="Include Name">
+          <input type="hidden" id="mug-size-field" name="Mug Size" value="11 oz ($30.99)">
+
+          <div class="option-group">
+            <span class="option-label">Pet Name on Mug</span>
+            <div class="option-pills" id="name-pills">
+              <div class="option-pill" data-name="include" data-active="true">Include Name</div>
+              <div class="option-pill" data-name="none" data-active="false">No Name</div>
+            </div>
+          </div>
+
+          <div class="option-group">
+            <span class="option-label">Mug Size</span>
+            <div class="option-pills" id="size-pills">
+              <div class="option-pill" data-size="30.99" data-label="11 oz" data-active="true">11 oz</div>
+              <div class="option-pill" data-size="36.99" data-label="15 oz" data-active="false">15 oz</div>
+              <div class="option-pill" data-size="42.99" data-label="20 oz" data-active="false">20 oz</div>
+            </div>
+          </div>
+
+          <label class="product-file-drop" for="mug-photo" id="mug-file-drop">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 16V4M12 4l-4 4M12 4l4 4"/>
+              <path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/>
+            </svg>
+            <span>Drag and drop your pet's photo or <u>Browse</u></span>
+          </label>
+          <input type="file" id="mug-photo" name="Pet Photo" accept="image/*" style="position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;">
+          <div class="product-file-name" id="mug-file-name"></div>
+
+          <input type="text" class="product-name-input" name="Pet Name" placeholder="Pet Name (optional)">
+
+          <div class="product-extras">
+            <span class="option-label" style="margin-bottom:0;">Any Extras?</span>
+            <label><input type="checkbox" name="Rush Order (+$8)" value="Yes"><span>Want your order sooner? <span class="extra-price">+$8</span><span class="extra-sub">We'll move your illustration to the front of the line.</span></span></label>
+            <label><input type="checkbox" name="Digital Download (+$6)" value="Yes"><span><u>Digital</u> Download <span class="extra-price">+$6</span><span class="extra-sub">Receive a file of your artwork to share and print extras.</span></span></label>
+          </div>
+
+          <div class="qty-cart-row">
+            <input type="number" class="qty-input" name="Quantity" value="1" min="1">
+            <button type="submit" class="btn btn-accent" style="flex:1;text-align:center;">Add to Cart</button>
+          </div>
+          <p id="mug-order-success" data-show="false" style="margin-top:14px;color:#C9A574;font-family:'Cormorant Garamond',serif;font-style:italic;opacity:0;transition:opacity 0.4s ease;">Order received — a confirmation email is on its way to you.</p>
+        </form>
+
+        <div class="trust-row">
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="15" height="12" rx="2"/><path d="M16 10h4l3 3v5h-7z"/><circle cx="6" cy="19" r="1.5"/><circle cx="18" cy="19" r="1.5"/></svg>
+            <span>Delivers within 1–2 weeks</span>
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="15" height="12" rx="2"/><path d="M16 10h4l3 3v5h-7z"/></svg>
+            <span>Free shipping on $100+ USD</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="border-top:1px solid var(--rule);" id="phonecase" class="product-view">
+  <div class="wrap">
+    <div class="product-grid reveal">
+      <div>
+        <img class="product-gallery-main" id="case-main-img" src="images/prints-2.webp">
+        <div class="case-gallery-thumbs">
+          <img src="images/prints-2.webp" class="is-active">
+          <img src="images/prints-12.webp">
+          <img src="images/prints-13.webp">
+          <img src="images/prints-14.webp">
+          <img src="images/prints-15.webp">
+          <img src="images/prints-16.webp">
+        </div>
+      </div>
+      <div>
+        <span class="eyebrow" style="color:#C9A574;">New</span>
+        <h1 style="font-size:clamp(1.9rem,3.6vw,2.6rem);margin-top:8px;line-height:1.05;">Custom Pet Portrait Phone Cases</h1>
+        <div class="product-price"><span style="text-decoration:line-through;color:var(--ink-soft);font-weight:400;font-size:0.7em;margin-right:8px;">$70.00</span>$55.00</div>
+        <p class="price-intro" style="margin-top:14px;">Now you can protect your phone and carry your pet with you everywhere you go — a clear case with a solid back and flexible sides, <u>digitally</u> illustrated from your own photo by a real artist. Wireless charging compatible. <strong style="color:var(--ink);">Please note, we only allow one pet per phone case — do not submit an order with more than one pet.</strong></p>
+        <ul class="price-notes" style="margin-top:14px;">
+          <li><strong style="color:var(--ink);">Upload</strong> a clear photo of your pet</li>
+          <li>I <strong style="color:var(--ink);">illustrate</strong> a custom portrait based on your photo</li>
+          <li><strong style="color:var(--ink);">Sit tight</strong> — your case ships in 1–2 weeks</li>
+        </ul>
+
+        <form id="case-order-form">
+          <input type="hidden" name="_subject" value="New Phone Case Order — Dylan J">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" id="case-make-field" name="Phone Make" value="iPhone">
+
+          <div class="option-group">
+            <span class="option-label">Phone Make</span>
+            <div class="option-pills" id="case-make-pills">
+              <div class="option-pill" data-make="iphone" data-active="true">iPhone</div>
+              <div class="option-pill" data-make="samsung" data-active="false">Samsung</div>
+            </div>
+          </div>
+
+          <div class="option-group">
+            <span class="option-label">Phone Model</span>
+            <select class="product-select" id="case-model-select" name="Phone Model"></select>
+          </div>
+
+          <label class="product-file-drop" for="case-photo" id="case-file-drop">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 16V4M12 4l-4 4M12 4l4 4"/>
+              <path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/>
+            </svg>
+            <span>Drag and drop your pet's photo or <u>Browse</u></span>
+          </label>
+          <input type="file" id="case-photo" name="Pet Photo" accept="image/*" style="position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;">
+          <div class="product-file-name" id="case-file-name"></div>
+          <p style="margin-top:8px;font-size:0.82rem;color:var(--ink-soft);">We'll remove the background and focus on your pet's unique traits.</p>
+
+          <input type="text" class="product-name-input" name="Pet Name" placeholder="Pet Name (optional)">
+
+          <div class="qty-cart-row">
+            <input type="number" class="qty-input" name="Quantity" value="1" min="1">
+            <button type="submit" class="btn btn-accent" style="flex:1;text-align:center;">Add to Cart</button>
+          </div>
+          <p id="case-order-success" data-show="false" style="margin-top:14px;color:#C9A574;font-family:'Cormorant Garamond',serif;font-style:italic;opacity:0;transition:opacity 0.4s ease;">Order received — a confirmation email is on its way to you.</p>
+        </form>
+
+        <div class="trust-row">
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="15" height="12" rx="2"/><path d="M16 10h4l3 3v5h-7z"/><circle cx="6" cy="19" r="1.5"/><circle cx="18" cy="19" r="1.5"/></svg>
+            <span>Delivers within 1–2 weeks</span>
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="15" height="12" rx="2"/><path d="M16 10h4l3 3v5h-7z"/></svg>
+            <span>Free shipping on $100+ USD</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="necklace" class="product-view">
   <div class="wrap">
     <div class="product-grid reveal">
       <div>
@@ -598,7 +774,7 @@
         </ul>
 
         <form id="order-form-necklace">
-          <input type="hidden" name="_subject" value="New Custom Pet Portrait Necklace Order — Dylan Jo">
+          <input type="hidden" name="_subject" value="New Custom Pet Portrait Necklace Order — Dylan J">
           <input type="hidden" name="_template" value="table">
           <input type="hidden" name="_captcha" value="false">
           <input type="hidden" name="Product" value="Custom Pet Portrait Necklace">
@@ -684,7 +860,7 @@
         </ul>
 
         <form id="order-form-keychain">
-          <input type="hidden" name="_subject" value="New Custom Pet Portrait Keychain Order — Dylan Jo">
+          <input type="hidden" name="_subject" value="New Custom Pet Portrait Keychain Order — Dylan J">
           <input type="hidden" name="_template" value="table">
           <input type="hidden" name="_captcha" value="false">
           <input type="hidden" name="Product" value="Custom Pet Portrait Keychain">
@@ -757,7 +933,7 @@
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-col">
-        <div class="foot-logo"><strong>Dylan Jo</strong> <span style="font-weight:400;">— Seattle, WA</span></div>
+        <div class="foot-logo"><strong>Dylan J</strong> <span style="font-weight:400;">— Seattle, WA</span></div>
         <div class="foot-social">
           <a href="https://www.instagram.com/commissioneverything?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" aria-label="Instagram">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.5" cy="6.5" r="1"/></svg>
@@ -775,9 +951,9 @@
         <ul>
           <li><a href="index.html#biography">Biography</a></li>
           <li><a href="gallery.html">Portfolio</a></li>
-          <li><a href="prints.html">Prints</a></li>
-          <li><a href="engravings.html">Engravings</a></li>
+          <li><a href="engravings.html">Prints</a></li>
           <li><a href="commission-art.html">Commission Art</a></li>
+          <li><a href="goods.html">Goods</a></li>
           <li><a href="reviews.html">Reviews</a></li>
           <li><a href="commission-art.html#prices">Prices</a></li>
         <li><a href="index.html#bio-panel">Contact</a></li>
@@ -801,7 +977,7 @@
       </div>
     </div>
     <div class="foot-bottom">
-      <span>Copyright © 2026 — Dylan Jo</span>
+      <span>Copyright © 2026 — Dylan J</span>
       <span>Commission queue currently open</span>
     </div>
   </div>
@@ -1082,6 +1258,229 @@
       });
     }
   });
+
+  // ---- mug product gallery thumbnails ----
+  const mainImg = document.getElementById('product-main-img');
+  document.querySelectorAll('.product-gallery-thumbs img').forEach((thumb) => {
+    thumb.addEventListener('click', () => {
+      if (mainImg) mainImg.src = thumb.src;
+      document.querySelectorAll('.product-gallery-thumbs img').forEach(t => t.classList.remove('is-active'));
+      thumb.classList.add('is-active');
+    });
+  });
+
+  // ---- mug product options: name toggle + size toggle + price ----
+  const priceEl = document.getElementById('product-price');
+  const sizePills = document.querySelectorAll('#size-pills .option-pill');
+  const namePills = document.querySelectorAll('#name-pills .option-pill');
+  const mugSizeField = document.getElementById('mug-size-field');
+  const mugNameField = document.getElementById('mug-name-field');
+  sizePills.forEach((pill) => {
+    pill.addEventListener('click', () => {
+      sizePills.forEach(p => p.setAttribute('data-active', 'false'));
+      pill.setAttribute('data-active', 'true');
+      const price = pill.getAttribute('data-size');
+      if (priceEl) priceEl.textContent = '$' + price;
+      if (mugSizeField) mugSizeField.value = pill.getAttribute('data-label') + ' ($' + price + ')';
+    });
+  });
+  namePills.forEach((pill) => {
+    pill.addEventListener('click', () => {
+      namePills.forEach(p => p.setAttribute('data-active', 'false'));
+      pill.setAttribute('data-active', 'true');
+      if (mugNameField) mugNameField.value = pill.textContent.trim();
+    });
+  });
+
+  // ---- mug product photo upload ----
+  const mugPhotoInput = document.getElementById('mug-photo');
+  const mugFileName = document.getElementById('mug-file-name');
+  const mugFileDrop = document.getElementById('mug-file-drop');
+  if (mugPhotoInput) {
+    const renderMugFile = () => {
+      mugFileName.textContent = mugPhotoInput.files.length ? mugPhotoInput.files[0].name : '';
+    };
+    mugPhotoInput.addEventListener('change', renderMugFile);
+    mugFileDrop.addEventListener('dragover', (e) => { e.preventDefault(); mugFileDrop.classList.add('is-dragover'); });
+    mugFileDrop.addEventListener('dragleave', () => mugFileDrop.classList.remove('is-dragover'));
+    mugFileDrop.addEventListener('drop', (e) => {
+      e.preventDefault();
+      mugFileDrop.classList.remove('is-dragover');
+      if (e.dataTransfer.files.length) {
+        mugPhotoInput.files = e.dataTransfer.files;
+        renderMugFile();
+      }
+    });
+  }
+
+  // ---- mug order form submit ----
+  const mugOrderForm = document.getElementById('mug-order-form');
+  const mugOrderSuccess = document.getElementById('mug-order-success');
+  if (mugOrderForm) {
+    const mugSubmitBtn = mugOrderForm.querySelector('button[type="submit"]');
+    mugOrderForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (mugSubmitBtn) { mugSubmitBtn.disabled = true; mugSubmitBtn.textContent = 'Adding…'; }
+
+      const activeSize = mugOrderForm.querySelector('#size-pills .option-pill[data-active="true"]');
+      const activeName = mugOrderForm.querySelector('#name-pills .option-pill[data-active="true"]');
+      const qtyValue = parseInt(mugOrderForm.querySelector('.qty-input').value, 10) || 1;
+      const sizeLabel = activeSize ? activeSize.getAttribute('data-label') : '11 oz';
+      const baseSizePrice = activeSize ? parseFloat(activeSize.getAttribute('data-size')) : 30.99;
+      const petNameValue = mugOrderForm.querySelector('input[name="Pet Name"]').value || null;
+      const rushOrder = mugOrderForm.querySelector('input[name="Rush Order (+$8)"]').checked;
+      const digitalDownload = mugOrderForm.querySelector('input[name="Digital Download (+$6)"]').checked;
+      const extrasTotal = (rushOrder ? 8 : 0) + (digitalDownload ? 6 : 0);
+      const unitPrice = baseSizePrice + extrasTotal;
+      const extrasLabel = [rushOrder ? 'Rush Order' : null, digitalDownload ? 'Digital Download' : null].filter(Boolean).join(' + ');
+
+      // Upload the reference photo before adding to cart, so it's never lost.
+      const photoFile = mugPhotoInput && mugPhotoInput.files ? mugPhotoInput.files[0] : null;
+      const photoPath = await cartUploadPhoto(photoFile);
+
+      cartAddItem({
+        id: 'mug-' + sizeLabel.replace(/\s+/g, '') + '-' + (activeName ? activeName.getAttribute('data-name') : 'include') + (extrasTotal ? '-' + extrasTotal : ''),
+        name: 'Custom Pet Portrait Mug',
+        variant: sizeLabel + ' · ' + (activeName ? activeName.textContent.trim() : 'Include Name') + (extrasLabel ? ' · ' + extrasLabel : ''),
+        price: unitPrice,
+        qty: qtyValue,
+        image: mainImg ? mainImg.src : undefined,
+        photo_path: photoPath,
+        customization: {
+          pet_name: petNameValue,
+          name_on_mug: activeName ? activeName.textContent.trim() : 'Include Name',
+          size: sizeLabel,
+          rush_order: rushOrder,
+          digital_download: digitalDownload
+        }
+      });
+      if (mugOrderSuccess) {
+        mugOrderSuccess.setAttribute('data-show', 'true');
+        mugOrderSuccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+      const data = new FormData(mugOrderForm);
+      mugOrderForm.reset();
+      if (mugFileName) mugFileName.textContent = '';
+      sizePills.forEach(p => p.setAttribute('data-active', p.getAttribute('data-size') === '30.99' ? 'true' : 'false'));
+      namePills.forEach(p => p.setAttribute('data-active', p.getAttribute('data-name') === 'include' ? 'true' : 'false'));
+      if (priceEl) priceEl.textContent = '$30.99';
+      if (mugSizeField) mugSizeField.value = '11 oz ($30.99)';
+      if (mugNameField) mugNameField.value = 'Include Name';
+      if (mugSubmitBtn) { mugSubmitBtn.disabled = false; mugSubmitBtn.textContent = 'Add to Cart'; }
+
+      // Best-effort order notification email — failure here should not block the cart.
+      fetch('https://formsubmit.co/ajax/dcho90014@gmail.com', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: data
+      }).catch(() => { /* notification only — item is already in the cart */ });
+    });
+  }
+
+  // ---- phone case product: gallery thumbnails ----
+  const caseMainImg = document.getElementById('case-main-img');
+  document.querySelectorAll('.case-gallery-thumbs img').forEach((thumb) => {
+    thumb.addEventListener('click', () => {
+      if (caseMainImg) caseMainImg.src = thumb.src;
+      document.querySelectorAll('.case-gallery-thumbs img').forEach(t => t.classList.remove('is-active'));
+      thumb.classList.add('is-active');
+    });
+  });
+
+  // ---- phone case product: make + model ----
+  const phoneModels = {
+    iphone: ['iPhone 16 Pro', 'iPhone 16', 'iPhone 15 Pro', 'iPhone 15', 'iPhone 14 Pro', 'iPhone 14', 'iPhone 13 Pro', 'iPhone 13', 'iPhone 12 Pro', 'iPhone 12', 'Other / Not Listed'],
+    samsung: ['Galaxy S24 Ultra', 'Galaxy S24', 'Galaxy S23 Ultra', 'Galaxy S23', 'Galaxy S22 Ultra', 'Galaxy S22', 'Galaxy S21', 'Other / Not Listed']
+  };
+  const makePills = document.querySelectorAll('#case-make-pills .option-pill');
+  const makeField = document.getElementById('case-make-field');
+  const modelSelect = document.getElementById('case-model-select');
+  const fillModels = (make) => {
+    if (!modelSelect) return;
+    modelSelect.innerHTML = '';
+    phoneModels[make].forEach((label) => {
+      const opt = document.createElement('option');
+      opt.value = label;
+      opt.textContent = label;
+      modelSelect.appendChild(opt);
+    });
+  };
+  fillModels('iphone');
+  makePills.forEach((pill) => {
+    pill.addEventListener('click', () => {
+      makePills.forEach(p => p.setAttribute('data-active', 'false'));
+      pill.setAttribute('data-active', 'true');
+      const make = pill.getAttribute('data-make');
+      if (makeField) makeField.value = pill.textContent.trim();
+      fillModels(make);
+    });
+  });
+
+  // ---- phone case product: photo upload ----
+  const casePhotoInput = document.getElementById('case-photo');
+  const caseFileName = document.getElementById('case-file-name');
+  const caseFileDrop = document.getElementById('case-file-drop');
+  if (casePhotoInput) {
+    const renderCaseFile = () => {
+      caseFileName.textContent = casePhotoInput.files.length ? casePhotoInput.files[0].name : '';
+    };
+    casePhotoInput.addEventListener('change', renderCaseFile);
+    caseFileDrop.addEventListener('dragover', (e) => { e.preventDefault(); caseFileDrop.classList.add('is-dragover'); });
+    caseFileDrop.addEventListener('dragleave', () => caseFileDrop.classList.remove('is-dragover'));
+    caseFileDrop.addEventListener('drop', (e) => {
+      e.preventDefault();
+      caseFileDrop.classList.remove('is-dragover');
+      if (e.dataTransfer.files.length) {
+        casePhotoInput.files = e.dataTransfer.files;
+        renderCaseFile();
+      }
+    });
+  }
+
+  // ---- phone case order form submit ----
+  const caseOrderForm = document.getElementById('case-order-form');
+  const caseOrderSuccess = document.getElementById('case-order-success');
+  if (caseOrderForm) {
+    const caseSubmitBtn = caseOrderForm.querySelector('button[type="submit"]');
+    caseOrderForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (caseSubmitBtn) { caseSubmitBtn.disabled = true; caseSubmitBtn.textContent = 'Adding…'; }
+
+      const activeMake = caseOrderForm.querySelector('#case-make-pills .option-pill[data-active="true"]');
+      const makeLabel = activeMake ? activeMake.textContent.trim() : 'iPhone';
+      const modelLabel = modelSelect ? modelSelect.value : '';
+      const qtyValue = parseInt(caseOrderForm.querySelector('.qty-input').value, 10) || 1;
+      const photoFile = casePhotoInput && casePhotoInput.files ? casePhotoInput.files[0] : null;
+      const photoPath = await cartUploadPhoto(photoFile);
+      cartAddItem({
+        id: 'phonecase-' + makeLabel.toLowerCase() + '-' + modelLabel.replace(/\s+/g, '').toLowerCase(),
+        name: 'Custom Pet Portrait Phone Case',
+        variant: makeLabel + ' · ' + modelLabel,
+        price: 55.00,
+        qty: qtyValue,
+        image: caseMainImg ? caseMainImg.src : undefined,
+        photo_path: photoPath,
+        customization: { make: makeLabel, model: modelLabel }
+      });
+      if (caseOrderSuccess) {
+        caseOrderSuccess.setAttribute('data-show', 'true');
+        caseOrderSuccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+      const data = new FormData(caseOrderForm);
+      caseOrderForm.reset();
+      if (caseFileName) caseFileName.textContent = '';
+      makePills.forEach(p => p.setAttribute('data-active', p.getAttribute('data-make') === 'iphone' ? 'true' : 'false'));
+      fillModels('iphone');
+      if (makeField) makeField.value = 'iPhone';
+      if (caseSubmitBtn) { caseSubmitBtn.disabled = false; caseSubmitBtn.textContent = 'Add to Cart'; }
+
+      fetch('https://formsubmit.co/ajax/dcho90014@gmail.com', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: data
+      }).catch(() => { /* notification only — item is already in the cart */ });
+    });
+  }
 </script>
 
 </body>

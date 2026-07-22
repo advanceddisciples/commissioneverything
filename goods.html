@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <link rel="icon" type="image/png" href="favicon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Reviews — Dylan J</title>
-<meta name="description" content="Read reviews from happy customers of Dylan J's custom pet portraits, prints, and engravings.">
-<meta property="og:title" content="Reviews — Dylan J">
-<meta property="og:description" content="Read reviews from happy customers of Dylan J's custom pet portraits, prints, and engravings.">
+<title>Goods — Dylan J</title>
+<meta name="description" content="Fun, oversized studio goods — starting with the Jumbo Pencil — from artist Dylan J in Seattle.">
+<meta property="og:title" content="Goods — Dylan J">
+<meta property="og:description" content="Fun, oversized studio goods — starting with the Jumbo Pencil — from artist Dylan J in Seattle.">
 <meta property="og:image" content="og-image.jpg">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,6 +55,7 @@
     letter-spacing:0.1em;padding:15px 30px;display:inline-block;text-decoration:none;
     border:1px solid var(--ink);color:var(--ink);border-radius:999px;
     transition:background 0.3s,color 0.3s,border-color 0.3s,transform 0.3s,box-shadow 0.3s;
+    background:var(--paper);appearance:none;-webkit-appearance:none;cursor:pointer;
   }
   .btn:hover{background:var(--ink);color:var(--paper);transform:translateY(-2px);box-shadow:0 10px 20px rgba(34,31,27,0.14);}
   .btn-accent{border-color:var(--accent);color:var(--accent);}
@@ -319,6 +320,38 @@
   .product-gallery-thumbs{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;}
   .product-gallery-thumbs img{width:64px;height:64px;object-fit:cover;border-radius:10px;cursor:pointer;border:2px solid transparent;background:#fff;transition:border-color 0.2s;display:block;}
   .product-gallery-thumbs img.is-active{border-color:var(--accent);}
+  .case-gallery-thumbs{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;}
+  .case-gallery-thumbs img{width:64px;height:64px;object-fit:cover;border-radius:10px;cursor:pointer;border:2px solid transparent;background:#fff;transition:border-color 0.2s;display:block;}
+  .case-gallery-thumbs img.is-active{border-color:var(--accent);}
+  .product-select{
+    width:100%;font-family:'Poppins',sans-serif;font-size:0.9rem;color:var(--ink);
+    padding:12px 14px;border:1px solid var(--rule);border-radius:12px;background:var(--paper);
+    appearance:none;-webkit-appearance:none;cursor:pointer;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2375705F' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 14px center;background-size:16px;
+  }
+  .product-select:focus{outline:none;border-color:var(--accent);}
+  .product-picker{padding:36px 0 6px;}
+  .product-picker-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:420px;margin:0 auto;}
+  .product-picker-item{
+    display:flex;flex-direction:column;align-items:center;gap:14px;cursor:pointer;background:none;border:none;padding:0;font:inherit;
+    outline:none;-webkit-tap-highlight-color:transparent;
+  }
+  .product-picker-box{
+    position:relative;width:100%;aspect-ratio:1/1;border-radius:22px;overflow:hidden;background:var(--paper-warm);
+    box-shadow:0 6px 18px rgba(34,31,27,0.08);transition:transform 0.3s cubic-bezier(.22,1,.36,1),box-shadow 0.3s ease,outline-color 0.25s;
+    outline:2px solid transparent;outline-offset:3px;
+  }
+  .product-picker-box img{width:100%;height:100%;object-fit:cover;display:block;}
+  .product-picker-item:hover .product-picker-box{transform:translateY(-4px);box-shadow:0 14px 28px rgba(34,31,27,0.14);}
+  .product-picker-item.is-active .product-picker-box{outline-color:var(--ink);}
+  .product-picker-label{
+    font-family:'Poppins',sans-serif;font-weight:700;font-size:0.95rem;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink);
+  }
+  .product-view{display:none;}
+  .product-view.is-active{display:block;animation:productFadeIn 0.35s ease;}
+  @keyframes productFadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+  @media (prefers-reduced-motion: reduce){ .product-view.is-active{animation:none;} }
   .product-price{font-family:'Poppins',sans-serif;font-size:1.3rem;font-weight:700;color:var(--ink);margin-top:6px;}
   .option-group{margin-top:22px;}
   .option-label{font-family:'Poppins',sans-serif;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--ink-soft);margin-bottom:8px;display:block;}
@@ -469,28 +502,6 @@
     .reveal,.reveal-group .reveal-item,.hero-anim{opacity:1 !important;transform:none !important;}
     .cursor-dot{display:none;}
   }
-  .reviews-hero{text-align:center;padding:70px 0 10px;}
-  .reviews-stars-big{color:#E8A93D;font-size:1.8rem;letter-spacing:4px;margin-top:14px;}
-  .reviews-summary{font-family:'Poppins',sans-serif;font-size:0.95rem;color:var(--ink-soft);margin-top:10px;}
-  .review-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:22px;margin-top:44px;}
-  @media (max-width:900px){ .review-grid{grid-template-columns:1fr 1fr;} }
-  @media (max-width:600px){ .review-grid{grid-template-columns:1fr;} }
-  .review-photo{width:65%;max-width:170px;aspect-ratio:4/3;object-fit:cover;border-radius:12px;display:block;margin:0 auto;}
-  .review-card{
-    background:var(--paper-warm);border:1px solid var(--rule);border-radius:18px;padding:26px 24px;
-    display:flex;flex-direction:column;gap:12px;
-  }
-  .review-stars{color:#E8A93D;font-size:0.95rem;letter-spacing:2px;}
-  .review-text{font-family:'Cormorant Garamond',serif;font-size:1.05rem;line-height:1.55;color:var(--ink);flex:1;}
-  .review-meta{border-top:1px solid var(--rule);padding-top:12px;font-family:'Poppins',sans-serif;}
-  .review-name{font-weight:600;font-size:0.88rem;color:var(--ink);}
-  .review-loc{font-size:0.78rem;color:var(--ink-soft);}
-  .review-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:6px;}
-  .review-date{font-size:0.7rem;color:var(--ink-soft);}
-  .review-product{
-    font-size:0.66rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--accent);
-    background:var(--accent-soft);padding:4px 9px;border-radius:999px;font-weight:600;
-  }
 </style>
 </head>
 <body>
@@ -508,12 +519,12 @@
         <li><a href="index.html">Home</a></li>
         <li><a href="gallery.html">Portfolio</a></li>
         <li class="has-dropdown">
-          <button class="nav-drop-toggle" type="button" aria-expanded="false"><span class="nav-drop-label">Shop<span class="shop-dot"></span></span>
+          <button class="nav-drop-toggle nav-current" type="button" aria-expanded="false"><span class="nav-drop-label">Shop<span class="shop-dot"></span></span>
             <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
           </button>
           <ul class="nav-dropdown">
             <li><a href="engravings.html">Prints</a></li>
-            <li><a href="goods.html">Goods</a></li>
+            <li><a href="goods.html" aria-current="page">Goods</a></li>
           </ul>
         </li>
         <li><a href="commission-art.html">Commissions</a></li>
@@ -547,285 +558,80 @@
   </div>
 </header>
 
-<div class="reviews-hero wrap">
-  <span class="eyebrow" style="color:#C9A574;">Client Love</span>
-  <h1 class="hero-anim d1" style="margin-top:8px;">Reviews</h1>
-  <div class="reviews-stars-big"><span style="color:#E8A93D;">★★★★</span><span style="background:linear-gradient(90deg,#E8A93D 90%,var(--rule) 90%);-webkit-background-clip:text;background-clip:text;color:transparent;">★</span></div>
-  <p class="reviews-summary">4.9 out of 5 · Based on 22 reviews</p>
-</div>
 
-<section style="padding-top:10px;">
+<section style="padding-top:70px;" id="pencil" class="product-view is-active">
   <div class="wrap">
-    <div class="review-grid reveal-group">
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"I ordered the mug with my golden retriever's face on it and it's better than I imagined. My whole family wants one now."</p>
-        <div class="review-meta">
-          <div class="review-name">Katie M.</div>
-          <div class="review-loc">Tacoma, WA</div>
-          <div class="review-bottom">
-            <span class="review-date">Jul 2, 2026</span>
-            <span class="review-product">Custom Pet Portrait Mug</span>
-          </div>
+    <div class="product-grid reveal">
+      <div>
+        <img class="product-gallery-main" id="product-main-img" src="images/jumbo-pencil.png" alt="Jumbo Pencil — oversized wooden pencil">
+        <div class="product-gallery-thumbs">
+          <img src="images/jumbo-pencil.png" alt="Thumbnail: Jumbo Pencil full view" class="is-active">
+          <img src="images/jumbo-pencil-detail.png" alt="Thumbnail: Jumbo Pencil close-up details">
+          <img src="images/jumbo-pencil-dimensions.png" alt="Thumbnail: Jumbo Pencil dimensions, 13.8 inches long">
         </div>
       </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"The graphite drawing of my cat Biscuit is unbelievable — every whisker looks right. Framed it in my living room."</p>
-        <div class="review-meta">
-          <div class="review-name">Marcus T.</div>
-          <div class="review-loc">Spokane, WA</div>
-          <div class="review-bottom">
-            <span class="review-date">Jun 24, 2026</span>
-            <span class="review-product">Pet Portrait</span>
+      <div>
+        <span class="eyebrow" style="color:#C9A574;">Featured Good</span>
+        <h1 style="font-size:clamp(1.9rem,3.6vw,2.6rem);margin-top:8px;line-height:1.05;">Jumbo Pencil</h1>
+        <div class="product-price" id="product-price">$14.99</div>
+        <p class="price-intro" style="margin-top:14px;">An oversized, fully functional wooden pencil — big enough to be a statement piece on a desk, and yes, it actually writes.</p>
+        <ul class="price-notes" style="margin-top:14px;">
+          <li><strong style="color:var(--ink);">Real wood</strong> construction with a genuine graphite core</li>
+          <li><strong style="color:var(--ink);">Oversized</strong> — a fun, eye-catching desk piece</li>
+          <li><strong style="color:var(--ink);">Ships</strong> within 1–2 weeks</li>
+        </ul>
+
+        <form id="pencil-order-form">
+          <input type="hidden" name="_subject" value="New Jumbo Pencil Order — Dylan J">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+
+          <div class="qty-cart-row">
+            <input type="number" class="qty-input" name="Quantity" value="1" min="1">
+            <button type="submit" class="btn btn-accent" style="flex:1;text-align:center;">Add to Cart</button>
           </div>
-        </div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars"><span style="color:#E8A93D;">★★★★</span><span style="color:var(--rule);">★</span></div>
-        <p class="review-text">"Dylan captured my grandmother's portrait so beautifully. We cried when we opened it."</p>
-        <div class="review-meta">
-          <div class="review-name">Priya S.</div>
-          <div class="review-loc">Bellevue, WA</div>
-          <div class="review-bottom">
-            <span class="review-date">Jun 15, 2026</span>
-            <span class="review-product">People Portraiture</span>
+          <p id="pencil-order-success" data-show="false" style="margin-top:14px;color:#C9A574;font-family:'Cormorant Garamond',serif;font-style:italic;opacity:0;transition:opacity 0.4s ease;">Added to cart!</p>
+        </form>
+
+        <div class="trust-row">
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="15" height="12" rx="2"/><path d="M16 10h4l3 3v5h-7z"/><circle cx="6" cy="19" r="1.5"/><circle cx="18" cy="19" r="1.5"/></svg>
+            <span>Delivers within 1–2 weeks</span>
           </div>
-        </div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Commissioned a painting of our farmhouse before we sold it. Now it hangs in our new place and still feels like home."</p>
-        <div class="review-meta">
-          <div class="review-name">Jordan K.</div>
-          <div class="review-loc">Bellingham, WA</div>
-          <div class="review-bottom">
-            <span class="review-date">Jun 3, 2026</span>
-            <span class="review-product">Architectural Art</span>
-          </div>
-        </div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"I wear my dog's necklace every day. So many compliments, and it means so much since he passed."</p>
-        <div class="review-meta">
-          <div class="review-name">Ava L.</div>
-          <div class="review-loc">Olympia, WA</div>
-          <div class="review-bottom">
-            <span class="review-date">May 22, 2026</span>
-            <span class="review-product">Engraved Necklace</span>
-          </div>
-        </div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Ordered two mugs as Christmas gifts, they arrived quickly and my sister cried when she opened hers."</p>
-        <div class="review-meta">
-          <div class="review-name">Ben R.</div>
-          <div class="review-loc">Renton, WA</div>
-          <div class="review-bottom">
-            <span class="review-date">May 10, 2026</span>
-            <span class="review-product">Custom Pet Portrait Mug</span>
-          </div>
-        </div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"The commission process was so easy and Dylan kept me updated the whole way. My cat's portrait is perfect."</p>
-        <div class="review-meta">
-          <div class="review-name">Grace H.</div>
-          <div class="review-loc">Kirkland, WA</div>
-          <div class="review-bottom">
-            <span class="review-date">Apr 28, 2026</span>
-            <span class="review-product">Pet Portrait</span>
-          </div>
-        </div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Had our first apartment painted before we moved. Small but so detailed and thoughtful."</p>
-        <div class="review-meta">
-          <div class="review-name">Diego M.</div>
-          <div class="review-loc">Vancouver, WA</div>
-          <div class="review-bottom">
-            <span class="review-date">Apr 14, 2026</span>
-            <span class="review-product">Architectural Art</span>
-          </div>
-        </div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Got a portrait done of my two kids for my husband's birthday. He was speechless."</p>
-        <div class="review-meta">
-          <div class="review-name">Hannah W.</div>
-          <div class="review-loc">Redmond, WA</div>
-          <div class="review-bottom">
-            <span class="review-date">Mar 30, 2026</span>
-            <span class="review-product">People Portraiture</span>
-          </div>
-        </div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Simple, well made, and the engraving of my dog is so clean. Great little gift."</p>
-        <div class="review-meta">
-          <div class="review-name">Owen P.</div>
-          <div class="review-loc">Yakima, WA</div>
-          <div class="review-bottom">
-            <span class="review-date">Mar 19, 2026</span>
-            <span class="review-product">Engraved Keychain</span>
-          </div>
-        </div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"This was my first time commissioning art and Dylan made it so easy. My rabbit has never looked cuter."</p>
-        <div class="review-meta">
-          <div class="review-name">Sofia C.</div>
-          <div class="review-loc">Everett, WA</div>
-          <div class="review-bottom">
-            <span class="review-date">Mar 2, 2026</span>
-            <span class="review-product">Pet Portrait</span>
-          </div>
-        </div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars"><span style="color:#E8A93D;">★★★★</span><span style="color:var(--rule);">★</span></div>
-        <p class="review-text">"Bought this for my mom's birthday, she uses it every single morning now. Not a big issue, but packaging was a little loose when it arrived."</p>
-        <div class="review-meta">
-          <div class="review-name">Liam D.</div>
-          <div class="review-loc">Walla Walla, WA</div>
-          <div class="review-bottom">
-            <span class="review-date">Feb 18, 2026</span>
-            <span class="review-product">Custom Pet Portrait Mug</span>
-          </div>
-        </div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"We gifted this portrait to my sister and her husband for their wedding. Absolutely gorgeous work."</p>
-        <div class="review-meta">
-          <div class="review-name">Nora F.</div>
-          <div class="review-loc">Puyallup, WA</div>
-          <div class="review-bottom">
-            <span class="review-date">Feb 5, 2026</span>
-            <span class="review-product">People Portraiture</span>
-          </div>
-        </div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Our first home, painted just as we were listing it. Something we'll treasure forever."</p>
-        <div class="review-meta">
-          <div class="review-name">Ethan B.</div>
-          <div class="review-loc">Auburn, WA</div>
-          <div class="review-bottom">
-            <span class="review-date">Jan 22, 2026</span>
-            <span class="review-product">Architectural Art</span>
-          </div>
-        </div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <img class="review-photo" alt="Customer's dog featured in their custom pet portrait, reviewed by Isla G." src="images/reviews-1.jpg" alt="Framed pet portrait painting hung on a customer's wall">
-        <p class="review-text">"The likeness to my dog Max is incredible. You can tell so much care went into it."</p>
-        <div class="review-meta">
-          <div class="review-name">Isla G.</div>
-          <div class="review-loc">Marysville, WA</div>
-          <div class="review-bottom">
-            <span class="review-date">Jan 8, 2026</span>
-            <span class="review-product">Pet Portrait</span>
-          </div>
-        </div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Ordered this after losing my cat. It's become one of my most treasured possessions."</p>
-        <div class="review-meta">
-          <div class="review-name">Caleb N.</div>
-          <div class="review-loc">Lacey, WA</div>
-          <div class="review-bottom">
-            <span class="review-date">Dec 20, 2025</span>
-            <span class="review-product">Engraved Necklace</span>
-          </div>
-        </div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Fast shipping, beautiful quality, and the portrait was spot on."</p>
-        <div class="review-meta">
-          <div class="review-name">Mia J.</div>
-          <div class="review-loc">Issaquah, WA</div>
-          <div class="review-bottom">
-            <span class="review-date">Dec 3, 2025</span>
-            <span class="review-product">Custom Pet Portrait Mug</span>
-          </div>
-        </div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars"><span style="color:#E8A93D;">★★★★</span><span style="background:linear-gradient(90deg,#E8A93D 50%,var(--rule) 50%);-webkit-background-clip:text;background-clip:text;color:transparent;">★</span></div>
-        <p class="review-text">"Such a thoughtful gift for my parents' anniversary. Dylan really listened to what we wanted."</p>
-        <div class="review-meta">
-          <div class="review-name">Wyatt S.</div>
-          <div class="review-loc">Sammamish, WA</div>
-          <div class="review-bottom">
-            <span class="review-date">Nov 15, 2025</span>
-            <span class="review-product">People Portraiture</span>
-          </div>
-        </div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <img class="review-photo" alt="Customer's pet featured in their custom pet portrait, reviewed by Ruby A." src="images/reviews-2.jpg" alt="Canvas pet portrait painting of a fluffy dog next to the real dog it was painted from">
-        <p class="review-text">"Second commission I've ordered and just as wonderful as the first. Truly talented artist."</p>
-        <div class="review-meta">
-          <div class="review-name">Ruby A.</div>
-          <div class="review-loc">Kent, WA</div>
-          <div class="review-bottom">
-            <span class="review-date">Oct 29, 2025</span>
-            <span class="review-product">Pet Portrait</span>
-          </div>
-        </div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Painted my grandfather's cabin from an old photo. It means the world to our family."</p>
-        <div class="review-meta">
-          <div class="review-name">Nathaniel V.</div>
-          <div class="review-loc">Federal Way, WA</div>
-          <div class="review-bottom">
-            <span class="review-date">Oct 11, 2025</span>
-            <span class="review-product">Architectural Art</span>
-          </div>
-        </div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Perfect little gift for my dad, he keeps it on his keys every day now."</p>
-        <div class="review-meta">
-          <div class="review-name">Lucy E.</div>
-          <div class="review-loc">Spokane Valley, WA</div>
-          <div class="review-bottom">
-            <span class="review-date">Sep 20, 2025</span>
-            <span class="review-product">Engraved Keychain</span>
-          </div>
-        </div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Exactly what I hoped for. Can't wait to order more for the holidays."</p>
-        <div class="review-meta">
-          <div class="review-name">Theo P.</div>
-          <div class="review-loc">Seattle, WA</div>
-          <div class="review-bottom">
-            <span class="review-date">Aug 30, 2025</span>
-            <span class="review-product">Custom Pet Portrait Mug</span>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="15" height="12" rx="2"/><path d="M16 10h4l3 3v5h-7z"/></svg>
+            <span>Free shipping on $100+ USD</span>
           </div>
         </div>
       </div>
     </div>
-    <div class="cta-row" style="margin-top:50px;">
-      <a href="commission-art.html#commission" class="btn btn-accent">Start Your Own Commission</a>
+  </div>
+</section>
+
+
+<section class="prices-section" style="border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);">
+  <div class="wrap" style="max-width:760px;">
+    <div style="text-align:center;">
+      <span class="eyebrow" style="color:#C9A574;">Good to Know</span>
+      <h2 style="font-size:clamp(2.2rem,4.5vw,3rem);margin-top:6px;">Frequently Asked Questions</h2>
+    </div>
+    <div class="faq-list" style="margin-top:36px;">
+      <details class="faq-item">
+        <summary>Does it actually write?</summary>
+        <p>Yes! It's fully functional — a real graphite core inside, sharpenable just like a regular pencil (once the Jumbo Pencil Sharpener launches).</p>
+      </details>
+      <details class="faq-item">
+        <summary>How big is it?</summary>
+        <p>13.8 inches long and 1.4 inches in diameter — see the dimensions photo in the gallery above for exact sizing.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What's it made of?</summary>
+        <p>Real wood construction with a metal ferrule and rubber eraser, just like a normal pencil — only much bigger.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How long does shipping take?</summary>
+        <p>Ships within 1–2 weeks, tracked. Free shipping on orders $100+.</p>
+      </details>
     </div>
   </div>
 </section>
@@ -853,8 +659,8 @@
           <li><a href="index.html#biography">Biography</a></li>
           <li><a href="gallery.html">Portfolio</a></li>
           <li><a href="engravings.html">Prints</a></li>
-          <li><a href="commission-art.html">Commission Art</a></li>
           <li><a href="goods.html">Goods</a></li>
+          <li><a href="commission-art.html">Commission Art</a></li>
           <li><a href="reviews.html">Reviews</a></li>
           <li><a href="commission-art.html#prices">Prices</a></li>
         <li><a href="index.html#bio-panel">Contact</a></li>
@@ -1016,8 +822,10 @@
   window.addEventListener('load', () => { setTimeout(forceRevealStuckElements, 800); });
   setTimeout(forceRevealStuckElements, 1800);
 
-  // ---- mug product gallery thumbnails ----
+  // ---- pencil product image reference ----
   const mainImg = document.getElementById('product-main-img');
+
+  // ---- pencil product gallery thumbnails ----
   document.querySelectorAll('.product-gallery-thumbs img').forEach((thumb) => {
     thumb.addEventListener('click', () => {
       if (mainImg) mainImg.src = thumb.src;
@@ -1026,84 +834,32 @@
     });
   });
 
-  // ---- mug product options: name toggle + size toggle + price ----
-  const priceEl = document.getElementById('product-price');
-  const sizePills = document.querySelectorAll('#size-pills .option-pill');
-  const namePills = document.querySelectorAll('#name-pills .option-pill');
-  const mugSizeField = document.getElementById('mug-size-field');
-  const mugNameField = document.getElementById('mug-name-field');
-  sizePills.forEach((pill) => {
-    pill.addEventListener('click', () => {
-      sizePills.forEach(p => p.setAttribute('data-active', 'false'));
-      pill.setAttribute('data-active', 'true');
-      const price = pill.getAttribute('data-size');
-      if (priceEl) priceEl.textContent = '$' + price;
-      if (mugSizeField) mugSizeField.value = pill.getAttribute('data-label') + ' ($' + price + ')';
-    });
-  });
-  namePills.forEach((pill) => {
-    pill.addEventListener('click', () => {
-      namePills.forEach(p => p.setAttribute('data-active', 'false'));
-      pill.setAttribute('data-active', 'true');
-      if (mugNameField) mugNameField.value = pill.textContent.trim();
-    });
-  });
-
-  // ---- mug product photo upload ----
-  const mugPhotoInput = document.getElementById('mug-photo');
-  const mugFileName = document.getElementById('mug-file-name');
-  const mugFileDrop = document.getElementById('mug-file-drop');
-  if (mugPhotoInput) {
-    const renderMugFile = () => {
-      mugFileName.textContent = mugPhotoInput.files.length ? mugPhotoInput.files[0].name : '';
-    };
-    mugPhotoInput.addEventListener('change', renderMugFile);
-    mugFileDrop.addEventListener('dragover', (e) => { e.preventDefault(); mugFileDrop.classList.add('is-dragover'); });
-    mugFileDrop.addEventListener('dragleave', () => mugFileDrop.classList.remove('is-dragover'));
-    mugFileDrop.addEventListener('drop', (e) => {
+  // ---- pencil order form submit ----
+  const pencilOrderForm = document.getElementById('pencil-order-form');
+  const pencilOrderSuccess = document.getElementById('pencil-order-success');
+  if (pencilOrderForm) {
+    const pencilSubmitBtn = pencilOrderForm.querySelector('button[type="submit"]');
+    pencilOrderForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      mugFileDrop.classList.remove('is-dragover');
-      if (e.dataTransfer.files.length) {
-        mugPhotoInput.files = e.dataTransfer.files;
-        renderMugFile();
+      if (pencilSubmitBtn) { pencilSubmitBtn.disabled = true; pencilSubmitBtn.textContent = 'Adding…'; }
+
+      const qtyValue = parseInt(pencilOrderForm.querySelector('.qty-input').value, 10) || 1;
+
+      cartAddItem({
+        id: 'jumbo-pencil',
+        name: 'Jumbo Pencil',
+        variant: null,
+        price: 14.99,
+        qty: qtyValue,
+        image: mainImg ? mainImg.src : undefined
+      });
+      if (pencilOrderSuccess) {
+        pencilOrderSuccess.setAttribute('data-show', 'true');
+        pencilOrderSuccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        setTimeout(() => pencilOrderSuccess.setAttribute('data-show', 'false'), 3000);
       }
-    });
-  }
-
-  // ---- mug order form submit ----
-  const mugOrderForm = document.getElementById('mug-order-form');
-  const mugOrderSuccess = document.getElementById('mug-order-success');
-  if (mugOrderForm) {
-    const mugSubmitBtn = mugOrderForm.querySelector('button[type="submit"]');
-    mugOrderForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      if (mugSubmitBtn) { mugSubmitBtn.disabled = true; mugSubmitBtn.textContent = 'Sending…'; }
-      const data = new FormData(mugOrderForm);
-      fetch('https://formsubmit.co/ajax/dcho90014@gmail.com', {
-        method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: data
-      })
-        .then((res) => {
-          if (!res.ok) throw new Error('Request failed');
-          if (mugOrderSuccess) {
-            mugOrderSuccess.setAttribute('data-show', 'true');
-            mugOrderSuccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-          }
-          mugOrderForm.reset();
-          if (mugFileName) mugFileName.textContent = '';
-          sizePills.forEach(p => p.setAttribute('data-active', p.getAttribute('data-size') === '28' ? 'true' : 'false'));
-          namePills.forEach(p => p.setAttribute('data-active', p.getAttribute('data-name') === 'include' ? 'true' : 'false'));
-          if (priceEl) priceEl.textContent = '$30.99';
-          if (mugSizeField) mugSizeField.value = '11 oz ($30.99)';
-          if (mugNameField) mugNameField.value = 'Include Name';
-        })
-        .catch(() => {
-          alert('Something went wrong sending your order — please try again, or email directly.');
-        })
-        .finally(() => {
-          if (mugSubmitBtn) { mugSubmitBtn.disabled = false; mugSubmitBtn.textContent = 'Add to Cart'; }
-        });
+      pencilOrderForm.reset();
+      if (pencilSubmitBtn) { pencilSubmitBtn.disabled = false; pencilSubmitBtn.textContent = 'Add to Cart'; }
     });
   }
 </script>
